@@ -1,0 +1,9 @@
+feature_engine==1.8.2
+figrecipes==0.0.7
+joblib==1.4.2
+matminer==0.9.3
+nbformat==5.10.4
+numpy==2.2.1
+pandas==2.2.3
+pymatgen==2024.10.3
+scikit_learn==1.4.2
