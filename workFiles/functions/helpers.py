@@ -51,3 +51,19 @@ def calculate_total_time_left(Results):
         for fit_time in total_time_per_model.values()
     )
     return round(total_time_left, 2)
+
+
+def count_combinations(element: tuple[type, dict]):
+    """
+    Count the number of combinations of the given hyperparameters.
+
+    Parameters:
+    element (tuple[type, dict]): A tuple containing the model class and a dictionary of its hyperparameters.
+
+    Returns:
+    tuple[str, int]: A tuple containing the model name and the number of hyperparameter combinations.
+    """
+    model, options = element
+    model_name = model.__name__
+    options_combination = np.prod([len(v) for v in options.values()])
+    return model_name, int(options_combination)

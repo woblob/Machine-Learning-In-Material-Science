@@ -1,5 +1,4 @@
 import pandas as pd
-from feature_engine.transformation import ReciprocalTransformer
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
@@ -7,8 +6,7 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 
 from workFiles.functions.helpers import rmse
 from workFiles.functions.performanceDecorator import performance_decorator
-from workFiles.functions.reciprocalFeatures import ReciprocalFeatures
-from workFiles.types import Data_transformed, Data_splitted
+from workFiles.types import Data_transformed, Data_splitted, Grid_result
 
 predicted_properties = [
     "K_VRH",  # bulk modulus
@@ -28,7 +26,7 @@ excluded_columns = predicted_properties + [
 
 
 def extract_data_to_fit(
-        table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
+    table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
 ) -> Data_transformed:
     """
     Extracts and transforms data for model fitting.
@@ -56,9 +54,8 @@ def extract_data_to_fit(
 
     pipe = Pipeline(
         [
-            ("reciprocalFeatures", ReciprocalFeatures()),
             ("polynomialFeatures", PolynomialFeatures(degree=2)),
-            ("standardScaler2", StandardScaler()),
+            ("standardScaler", StandardScaler()),
             ("pca", PCA(n_components=0.95)),
         ]
     )
@@ -74,7 +71,7 @@ def extract_data_to_fit(
 
 
 @performance_decorator
-def fit_model(Model: type, data: Data_splitted, column_name: str, param_grid):
+def fit_model(Model: type, data: Data_splitted, param_grid) -> Grid_result:
     """
     Perform hyperparameter optimization using GridSearchCV for a given model.
 
@@ -105,8 +102,8 @@ def fit_model(Model: type, data: Data_splitted, column_name: str, param_grid):
 
     grid_search.fit(X_train, y_train)
 
-    r2_test = grid_search.best_estimator_.score(X_test, y_test)
-    rmse_test = rmse(y_test, grid_search.best_estimator_.predict(X_test))
+    r2_test = round(grid_search.best_estimator_.score(X_test, y_test), 3)
+    rmse_test = round(rmse(y_test, grid_search.best_estimator_.predict(X_test)), 3)
 
     print(f"Model: {model.__class__.__name__}")
     print(f"test R2 = {r2_test:.3f},", end="\t")
@@ -114,4 +111,4 @@ def fit_model(Model: type, data: Data_splitted, column_name: str, param_grid):
     print("Best Parameters:", grid_search.best_params_)
     print(f"Best Score: {grid_search.best_score_:.3f}")
 
-    return grid_search
+    return Grid_result(grid_search, r2_test, rmse_test)

@@ -6,3 +6,7 @@ tex do prezentacji
 *.joblib
 **/__pycache__/
 *.pyc
+.env
+outputs
+temp*
+*~
