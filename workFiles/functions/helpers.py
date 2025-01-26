@@ -27,7 +27,7 @@ def calculate_total_time_left(Results):
     Parameters:
     Results (dict): A dictionary where the keys are the feature names, the values
         are dictionaries where the keys are the model names, and the values are dictionaries
-        with the keys "accuracy" and "timeTaken".
+        with the keys "accuracy" and "time_taken".
 
     Returns:
     float: The total time left in minutes for the remaining models to finish training.

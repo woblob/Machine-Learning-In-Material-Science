@@ -9,24 +9,22 @@ from workFiles.functions.performanceDecorator import performance_decorator
 from workFiles.types import Data_transformed, Data_splitted, Grid_result
 
 predicted_properties = [
-    "K_VRH",  # bulk modulus
-    "G_VRH",  # shear modulus
-    "elastic_anisotropy",
-    "poisson_ratio",
+    "bulk_modulus",
+    "shear_modulus",
+    "universal_anisotropy",
+    "homogeneous_poisson",
 ]
 
 excluded_columns = predicted_properties + [
-    "formula",
-    "material_id",
+    "formula_pretty",
     "structure",
     "composition",
     "composition_oxid",
-    "space_group",
 ]
 
 
 def extract_data_to_fit(
-    table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
+        table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
 ) -> Data_transformed:
     """
     Extracts and transforms data for model fitting.

@@ -1,7 +1,6 @@
 import pandas as pd
 import joblib
 
-from matminer.datasets.convenience_loaders import load_elastic_tensor
 from matminer.featurizers.conversions import (
     StrToComposition,
     CompositionToOxidComposition,
@@ -9,11 +8,11 @@ from matminer.featurizers.conversions import (
 from matminer.featurizers.composition import ElementProperty, OxidationStates
 from matminer.featurizers.structure import DensityFeatures
 
+from workFiles.functions.download_data import download_data_from_mp
 from workFiles.functions.performanceDecorator import performance_decorator
 
 
-@performance_decorator
-def get_full_dataframe() -> pd.DataFrame:
+def get_full_dataframe(docs: pd.DataFrame) -> pd.DataFrame:
     """
     Get a pandas DataFrame containing the elastic tensor data from
     "Charting the complete elastic properties of inorganic crystalline compounds",
@@ -27,27 +26,20 @@ def get_full_dataframe() -> pd.DataFrame:
 
     :return: pandas DataFrame
     """
-    df = load_elastic_tensor()
+    print("Extracting data...")
 
-    unwanted_columns = [
-        "volume",
-        "nsites",
-        "compliance_tensor",
-        "elastic_tensor",
-        "elastic_tensor_original",
-        "K_Voigt",
-        "G_Voigt",
-        "K_Reuss",
-        "G_Reuss",
-    ]
-    df.drop(unwanted_columns, axis=1, inplace=True)
-    df = StrToComposition().featurize_dataframe(df, "formula")
+    df = StrToComposition().featurize_dataframe(docs, "formula_pretty")
     df = ElementProperty.from_preset(
         preset_name="magpie", impute_nan=True
     ).featurize_dataframe(df, col_id="composition")
     df = CompositionToOxidComposition().featurize_dataframe(df, "composition")
     df = OxidationStates().featurize_dataframe(df, "composition_oxid")
-    df = DensityFeatures().featurize_dataframe(df, "structure")
+    df = DensityFeatures().featurize_dataframe(df, "structure", ignore_errors=True)
+
+    df.dropna(axis=0, how="any", inplace=True)
+
+    print("Data extracted")
+    print(f"Removed {len(docs) - len(df)} records")
 
     return df
 
@@ -65,15 +57,17 @@ def get_df(filename=None) -> pd.DataFrame:
     :return: pandas DataFrame
     """
     if filename is None:
-        filename = "workFiles/df.joblib"
+        filename = "outputs/df.joblib"
 
     df = None
     try:
         df = joblib.load(filename)
+        print(f"Loaded full dataframe with {len(df)} records from {filename}")
     except FileNotFoundError as e:
         print(e)
 
-        df = get_full_dataframe()
+        data = download_data_from_mp("outputs/mp_docs.joblib")
+        df = get_full_dataframe(data)
 
         joblib.dump(df, filename)
 
