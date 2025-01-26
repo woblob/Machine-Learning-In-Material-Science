@@ -9,7 +9,6 @@ from matminer.featurizers.composition import ElementProperty, OxidationStates
 from matminer.featurizers.structure import DensityFeatures
 
 from workFiles.functions.download_data import download_data_from_mp
-from workFiles.functions.performanceDecorator import performance_decorator
 
 
 def get_full_dataframe(docs: pd.DataFrame) -> pd.DataFrame:
