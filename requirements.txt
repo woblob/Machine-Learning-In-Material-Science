@@ -4,5 +4,5 @@ matminer==0.9.3
 numpy==2.2.2
 pandas==2.2.3
 python-dotenv==1.0.1
-scikit_learn==1.4.2
+scikit_learn==1.6.1
 mp_api==0.45.1

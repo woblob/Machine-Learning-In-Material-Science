@@ -11,6 +11,8 @@ from workFiles.functions.getDF import get_df
 from workFiles.functions.helpers import calculate_total_time_left, rmse, count_combinations
 from workFiles.types import Data_splitted
 import joblib
+
+
 df = get_df()
 data = extract_data_to_fit(df, predicted_properties)
 models = [
@@ -27,7 +29,7 @@ models = [
         'alpha': [0.001, 0.01, 0.1, 1.0, 10.0, 100],
         'solver': ['svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag', 'saga'],
         'copy_X': [True],
-        'max_iter': [100_000],
+        'max_iter': [100_000_000],
         'fit_intercept': [True],
     }),
     (ElasticNet, {
@@ -71,10 +73,11 @@ models = [
 ]
 
 model_combinations = {model_name: count for model_name, count in map(count_combinations, models)}
-model_combinations
-results_already_defined = False
-# # Results per model and property and grid search parameters
-if not results_already_defined:
+try:
+    Results = joblib.load('Results.joblib')
+except FileNotFoundError as e:
+    print(e)
+
     Results = {
         column_name: {
             model.__name__: {
@@ -87,7 +90,6 @@ if not results_already_defined:
         }
         for column_name in data.y
     }
-    results_already_defined = True
 
 for i, column_name in enumerate(data.y):
     X_train, X_test, y_train, y_test = train_test_split(
@@ -99,7 +101,7 @@ for i, column_name in enumerate(data.y):
     for j, (model, options) in enumerate(models):
         if Results[column_name][model.__name__]["instance"] is not None:
             continue
-        print(i, j)
+        print(model.__name__, i, j)
 
         model_instance, time_taken = fit_model(model, data_split, options)
 
