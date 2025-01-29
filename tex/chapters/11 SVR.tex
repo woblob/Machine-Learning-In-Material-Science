@@ -1,0 +1,114 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{7. Liniowa regresja wektorów nośnych (Liniowy SVR) \cite{alma991000280759708832}}
+\label{sec:machine_learning_overview}
+\addcontentsline{toc}{section}{7. Liniowa regresja wektorów nośnych (Liniowy SVR)}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Liniowa regresja wektorów nośnych (Liniowy SVR) jest odmianą regresji wektorów nośnych (SVR), która wykorzystuje liniowe jądro do modelowania relacji między cechami wejściowymi a ciągłą zmienną docelową. Jest ona szczególnie przydatna, gdy relację można przybliżyć jako liniową, co czyni ją wydajną obliczeniowo i prostą do wdrożenia.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Marginesy}
+\vspace{-1.0em}
+\label{sec:what_is_ml}
+
+W odróżnieniu od regresji zwykłej, która próbuje dopasować model do wszystkich wartości, Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
+
+Są dwa rodzaje marginesów: twardy i miękki. 
+Twardy margines jest bardziej rygorystyczny i nie pozwala na błędy poza nim. Miękki margines jest bardziej tolerancyjny i umożliwia błędy poza nim, kompensując to karą za takie błędy.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zasada działania}
+\vspace{-1.0em}
+\label{sec:what_is_ml}
+
+Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
+
+Funkcja decyzyjna:
+
+$$
+\boldsymbol{w}^T \cdot \boldsymbol{x} + b = 0
+$$
+
+\needspace{4\baselineskip}
+Funkcja prognostyczna:
+
+$$
+\hat{y} ={ \begin{cases}
+    0 & \text{jeżeli } \boldsymbol{w}^T \cdot \boldsymbol{x} + b \lt 0 \\
+    1 & \text{jeżeli } \boldsymbol{w}^T \cdot \boldsymbol{x} + b \geq 0
+\end{cases}}
+$$
+
+
+Celem liniowej SVR jest minimalizacja następującej funkcji dla miękkiego marginesu względem $( \boldsymbol{w},b,\zeta)$:
+
+$$
+\frac{1}{2} \boldsymbol{w}^T \cdot \boldsymbol{w} + C \sum_{i=1}^{n} \zeta
+$$
+
+pod warunkiem, że:
+
+$$
+t^{(i)}(\boldsymbol{w}^T \cdot \boldsymbol{x}^{(i)} + b) \geq 1 \quad \text{ i } \quad \zeta^{(i)} \geq 0 \quad \text{ dla } \quad i=1,2,\dots,m
+$$
+
+Gdzie:
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+ \item  $\boldsymbol{w}$ - reprezentuje wagi wektorów nośnych
+
+\item $C$ - jest parametrem regularyzacji, który kontroluje kompromis między maksymalizacją marginesu a minimalizacją błędu
+
+ \item  $\zeta$ - zmienna swobodna ("slack")
+
+ \item  $t^{(i)}$ - etykieta klasy dla przykładu $i$
+
+ \item  $\boldsymbol{x}^{(i)}$ - wektor cech dla przykładu $i$
+
+\item $b$ - przesunięcie (bias)
+\end{itemize}
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zalety }
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+Ten model jest wydajny obliczeniowo, szczególnie w przypadku dużych zestawów danych, ponieważ unika złożoności związanej z jądrami nieliniowymi.
+Podobnie jak jej nieliniowe odpowiedniki, liniowy SVR jest mniej wrażliwy na wartości odstające ze względu na jego funkcję kosztu niewrażliwą na $\epsilon$.
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Ograniczenia }
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+Liniowa regresja wektorów nośnych zakłada liniową zależność między cechami a zmienną docelową. Jeśli podstawowa zależność jest nieliniowa, ten model może nie działać dobrze w porównaniu z innymi technikami regresji, które mogą wychwytywać nieliniowości.
+
+Wydajność liniowej regresji wektorów nośnych zależy od starannego dostrojenia parametrów, takich jak $C$ i $\epsilon$, co może wymagać walidacji krzyżowej.
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Użyte parametry dla GridSearchCV \cite{url_LinearSVR, url_grid_search}}
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item max\_iter: określa maksymalną liczbę iteracji algorytmu optymalizacji.
+\item loss:  określa funkcję straty używaną podczas optymalizacji.
+\item epsilon: definiuje margines tolerancji, w którym nie jest naliczana żadna kara za błędy.
+\item tol: ustawia tolerancję dla kryteriów zatrzymania w procesie optymalizacji.
+\end{itemize}
+% \clearpage
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

@@ -1,0 +1,93 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{9. Random Forest Regressor \cite{alma991000280759708832}}
+\label{sec:machine_learning_overview}
+\addcontentsline{toc}{section}{9. Random Forest Regressor}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Random Forest Regressor to metoda uczenia się zespołowego, która łączy wiele drzew decyzyjnych w celu uzyskania dokładniejszych i bardziej solidnych prognoz dla zadań regresji. Jest częścią szerszej rodziny algorytmów Random Forest, które mogą być używane zarówno do klasyfikacji, jak i regresji.
+
+Random Forest Regressor buduje wiele drzew decyzyjnych podczas treningu. Każde drzewo jest trenowane na losowym podzbiorze danych treningowych. Takie podejście wprowadza różnorodność wśród drzew i pomaga zmniejszyć ryzyko nadmiernego dopasowania.
+
+Algorytm wykorzystuje technikę zwaną 'agregacją przykładów wstępnych' (bagging), w której każde drzewo jest trenowane na próbce "bootstrap'owej" (losowe próbkowanie z zastępowaniem)zestawu danych. Oznacza to, że każde drzewo widzi nieco inną wersję danych.
+
+Podczas dzielenia węzłów w każdym drzewie, Random Forest wybiera losowy podzbiór cech zamiast brać pod uwagę wszystkie cechy. To zwiększa różnorodność drzew i pomaga zapobiegać nadmiernemu dopasowaniu.
+
+W przypadku zadań regresji ostateczna prognoza regresora Random Forest jest zazwyczaj średnią prognoz wykonanych przez wszystkie poszczególne drzewa. Ten proces uśredniania pomaga wygładzić błędy i poprawić ogólną dokładność modelu.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zalety }
+\vspace{-1.0em}
+
+
+\begin{itemize}
+
+\item Random Forest posiada mniejszą podatność na nadmierne dopasowanie w porównaniu do pojedynczych drzew decyzyjnych. Zawdzięcza to swojej naturze zespołowej i mechanizmowi uśredniania. 
+
+\item Model ten potrafi uchwycić złożone relacje między cechami a zmienną docelową bez konieczności przyjmowania założeń liniowych.
+
+\item Dodatkowo dostarcza wglądu w znaczenie cech, pomagając zidentyfikować zmienne, które mają największy wpływ na prognozy.
+
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Ograniczenia }
+\vspace{-1.0em}
+
+\begin{itemize}
+
+\item Jest znacznie trudniejszy do zinterpretowania niż pojedyncze drzewa decyzyjne. Zespołowa natura modelu utrudnia zrozumienie, w jaki sposób tworzone są prognozy. 
+
+\item Szkolenie wielu drzew może być intensywne obliczeniowo, szczególnie w przypadku dużych zestawów danych lub przy użyciu wielu funkcji.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zastosowania \cite{lewoniewski2016quality, wecel2015modelling}}
+\vspace{-1.0em}
+
+Zastosowanie w pracach naukowych: Algorytm jest stosowany w pracach naukowych, np. do oceny jakości artykułów Wikipedii.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Kluczowe różnice między Regresorami Random Forest a Drzewem Decyzyjnym}
+\vspace{-1.0em}
+
+\begin{itemize}
+
+\item Regresor drzewa decyzyjnego (RDD) opiera się na pojedynczym drzewie decyzyjnym, które tworzy prognozy poprzez rekurencyjne dzielenie danych na podstawie wartości cech. W przeciwieństwie do tego, regresor lasu losowego (RLL) buduje wiele drzew decyzyjnych podczas treningu i łączy ich prognozy, aby wygenerować ostateczny wynik poprzez uśrednienie prognoz ze wszystkich drzew.
+
+\item RDD jest bardziej podatny na przetrenowanie, szczególnie gdy może rosnąć głęboko bez ograniczeń. Z kolei RLL jest bardziej odporny na nadmierne dopasowanie dzięki uśrednianiu wielu drzew oraz losowości wprowadzanej przez 'bagging' i wybór cech.
+
+
+\item Jeśli chodzi o metodę przewidywania, regresor drzewa decyzyjnego tworzy przewidywania wyłącznie na podstawie struktury pojedynczego drzewa, co może prowadzić do dużej wariancji w przewidywaniach. W przeciwieństwie do tego, regresor Random Forest zmniejsza wariancję i poprawia dokładność poprzez uśrednianie wyników wszystkich pojedynczych drzew.
+
+
+\item Ze względu na charakter zespołu wielu drzew, RLL jest trudniejszy do zanalizowania niż RDD. 
+
+
+\item Złożoność obliczeniowa to kolejny aspekt różniący te modele. Regresor drzewa decyzyjnego jest zazwyczaj szybszy w szkoleniu, ponieważ wymaga zbudowania tylko jednego drzewa. Natomiast regresor lasu losowego wymaga większych zasobów obliczeniowych i czasu na szkolenie ze względu na budowę wielu drzew oraz potrzebę agregacji.
+
+
+\item Oba modele mogą dostarczać informacji o ważności cech; jednak metryki ważności cech generowane przez regresor lasu losowego są często uznawane za bardziej wiarygodne dzięki agregacji wyników z wielu drzew.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Użyte parametry dla GridSearchCV \cite{url_RFF, url_grid_search}}
+\vspace{-1.0em}
+
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item n\_estimators: określa liczbę drzew w lesie.
+\item max\_leaf\_nodes: ustawia maksymalną liczbę węzłów liściowych w każdym drzewie.
+\item max\_depth: określa maksymalną głębokość każdego drzewa.
+\item bootstrap: parametr logiczny. Wskazuje czy 'bootstrap'ować' próbki do budowania drzew. Jeśli False, cały zestaw danych jest używany do budowania każdego drzewa.
+\end{itemize}
+% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

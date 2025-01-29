@@ -1,0 +1,91 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{Moduł sprężystości poprzecznej \cite{alma991001031769708832}} 
+\label{chap:wstep}
+\addcontentsline{toc}{section}{\textnormal{3. Moduł sprężystości poprzecznej}}
+\fontsize{12}{14}\selectfont
+\vspace{\baselineskip} 
+
+Znany również jako moduł ścinania, określa reakcję materiału na naprężenie ścinające (równolegle do powierzchni).
+Definiowany jest jako:
+
+$$
+G = \frac{\tau}{\gamma}
+$$
+
+gdzie:
+\begin{itemize}
+  \item $G$ to moduł ścinania,
+  \item $\tau$ to naprężenie ścinające,
+  \item $\gamma$ to odkształcenie ścinające.
+\end{itemize}
+
+Siła ścinająca przyłożona do ciała stałego, powoduje że sąsiadujące warstwy materiału przesuwają się względem siebie. Moduł ścinania jest stałą określającą tę zależność między zastosowanym naprężeniem ścinającym a wynikającym z niego odkształceniem (odkształceniem ścinającym).
+
+Materiały o wysokim module ścinania są w stanie wytrzymać znaczne odkształcenie bez uginania się, co czyni je idealnymi do zastosowań konstrukcyjnych.
+
+% Chapter 1.2
+\phantomsection
+\setstretch{1.5}
+\section*{Związek z innymi właściwościami mechanicznymi \cite{alma991000386409708832}}
+\vspace{-1.0em}
+\label{sec:spacing_font_size}
+
+Moduł ścinania jest związany z innymi modułami sprężystości, takimi jak moduł Younga ($E$) lub wcześniej wspomniany, moduł objętościowy ($K$). W przypadku materiałów izotropowych związki te można wyrazić jako:
+
+$$
+G = \frac{E}{2(1 + \nu)} = \frac{3(1 \text{ - } 2\nu)K}{2(1 + \nu)}
+$$
+
+gdzie:
+\begin{itemize}
+  \item $\nu$ to współczynnik Poissona
+  \item $K$ to moduł sprężystości objętościowej
+  \item $E$ to moduł Younga
+\end{itemize}
+
+
+To równanie pokazuje, że moduł ścinania można przedstawiać w różny sposób, w zależności jakie właściwości materiału znamy. 
+
+\clearpage
+
+
+
+
+
+W części praktycznej moduły sprężystości objętościowej i poprzecznej będą określane z metody uśrednień $"V R H"$ (skrót od nazwisk Voigt-Reuss-Hill) jako $K_{VRH}$ i $G_{VRH}$.
+
+
+
+Metody Voigt, Reuss i Hill \cite{alma991000386409708832, url_sparrow_przegl_papier_2024_05} są powszechnie stosowane w mechanice materiałów do określenia efektywnych modułów sprężystości w materiałach kompozytowych oraz wielofazowych.
+
+\begin{itemize}
+
+  \item {\textbf{Metoda Voigta} zakłada, że w całym materiale odkształcenie jest stałe. W wyniku, efektywny moduł sprężystości (np. Younga) oblicza się jako średnią arytmetyczną modułów poszczególnych faz:
+$$
+  E_V = \sum{E_iV_i}
+$$
+gdzie $E_i$ i $V_i$ to moduł Younga i udział procentowy dla fazy $i$.}
+
+  \item {\textbf{Metoda Reussa} zakłada, że wszystkie fazy materiału są poddawane tym samym odkształceniom. W wyniku tego efektywny moduł sprężystości jest obliczany jako średnia harmoniczna:
+  $$
+  \frac{1}{E_R} = \sum\frac{V_i}{E_i}
+  $$
+
+gdzie $E_i$ i $V_i$ to moduł Younga i udział procentowy dla fazy $i$.
+To daje dolną granicę dla efektywnego modułu sprężystości.}
+  \item {\textbf{Metoda Hilla} łączy podejścia Voigta i Reussa, oferując uśredniony wynik pomiędzy tymi dwiema metodami. 
+
+Efektywny moduł Younga $E_H$ oblicza się jako:
+  $$
+  E_H = \frac{1}{2}\left(E_V + E_R\right)
+  $$
+  co umożliwia uzyskanie wartości pośredniej między wartościami uzyskanymi z obu poprzednich metod.
+}
+
+\end{itemize}
+
+\clearpage

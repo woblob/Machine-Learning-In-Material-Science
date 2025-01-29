@@ -1,0 +1,81 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{2. Regresja LASSO \cite{alma991000280759708832}}
+\addcontentsline{toc}{section}{2. Regresja LASSO}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Regresja LASSO, co oznacza "operator najmniejszej bezwzględnej redukcji i wyboru" (Least Absolute Shrinkage and Selection Operator). Jest to technika regresji liniowej, która wykorzystuje regularyzację $L_1$. Ta metoda nie tylko pomaga zapobiegać nadmiernemu dopasowaniu, ale także wykonuje selekcję zmiennych poprzez zmniejszenie niektórych współczynników do dokładnie zera, skutecznie wykluczając te zmienne z modelu.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Wzór ogólny \cite{url_stochasticbard_lasso_regression}}
+\vspace{-1.0em}
+
+
+Wzór na krzywa regresji jest taki sam jak w przypadku regresji liniowej. Istotną różnicą jest sposób wyznaczania współczynników krzywej.
+
+Funkcję kosztu dla regresji Lasso można wyrazić jako:
+\begin{center}
+
+$L = \sum_{i=1}^{n} (y_i - (\boldsymbol{x}_i^{\top} \boldsymbol{\beta} + \epsilon_i))^2 + \lambda \sum_{j=1}^{n} |\beta_j|$
+\end{center}
+
+gdzie: \\
+- $L$ jest całkowitą funkcją kosztu.\\
+- $y_i$ są rzeczywistymi wartościami zmiennej zależnej.\\
+- $\boldsymbol{x}_i^{\top}$ to transponowany wektor zmiennych niezależnych (cechy).\\
+- $\boldsymbol{\beta}$ to wektor współczynników modelu.
+- $\lambda$ to stopień regularyzacji, który kontroluje "człon regularyzacyjny" $( \lambda \sum_{j=1}^{n} |\beta_j|)$.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Główne cechy}
+\vspace{-1.0em}
+
+
+\begin{enumerate}
+    \item \textbf{\textit{Regularyzacja}}: Człon regularyzacyjny $L_1$ ($\lambda \sum_{j=1}^{n} |\beta_j|$) generuje "model rzadki" dla współczynników $\boldsymbol{ \beta }$. Oznacza to, że mniej ważne cechy można całkowicie usunąć z modelu, co ułatwia interpretację.
+    
+    \item \textbf{\textit{Kompromis między odchyleniem a wariancją}}: Wprowadzenie regularyzacji pomaga zarządzać kompromisem między odchyleniem a wariancją. Chociaż może wprowadzać pewne odchylenie do przewidywań, może znacznie zmniejszyć wariancję, co prowadzi do lepszej wydajności w przypadku niewidzianych danych.
+\end{enumerate}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zalety}
+\vspace{-1.0em}
+
+
+Regresja Lasso charakteryzuje się prostotą i łatwością interpretacji. To prowadzi do tworzenia modeli, które są łatwiejsze do zrozumienia, zwłaszcza w przypadku zbiorów danych o dużej liczbie wymiarów. Dodatkowo, potrafi efektywnie obsługiwać sytuacje, w których zmienne niezależne są silnie skorelowane. W takich przypadkach model wybiera jedną zmienną z grupy skorelowanych predyktorów, co pozwala na uproszczenie modelu i eliminację problemu współliniowości.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Ograniczenia}
+\vspace{-1.0em}
+
+
+Ograniczeniami są między innymi błąd tendencyjności danych. W sytuacjach silnej korelacji między zmiennymi, Lasso może preferować jedną zmienną kosztem innych istotnych predyktorów, co może prowadzić do utraty cennych informacji. Ponadto, metoda ta jest wrażliwa na wybór parametru regularyzacji $\lambda$. Zbyt wysoka wartość tego parametru może prowadzić do niedopasowania modelu, podczas gdy zbyt niska wartość może nie wystarczająco rozwiązać problemu nadmiernego dopasowania.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zastosowanie}
+\vspace{-1.0em}
+
+
+Regresja Lasso jest szeroko stosowana w każdej dziedzinie, w której selekcja cech ma kluczowe znaczenie ze względu na dużą wymiarowość.
+\clearpage
+
+\phantomsection
+\setstretch{1.5}
+\section*{Użyte parametry dla GridSearchCV \cite{url_Lasso, url_grid_search}}
+\vspace{-1.0em}
+
+
+- alpha: reprezentuje siłę regularyzacji. Kontroluje on ilość skurczu stosowanego do współczynników.\\
+- tol: definiuje tolerancję dla kryteriów zatrzymania w algorytmie optymalizacji.\\
+- $copy_X$: parametr logiczny. Określa czy skopiować dane wejściowe przed dopasowaniem. \\
+
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

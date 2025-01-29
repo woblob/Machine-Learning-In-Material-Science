@@ -1,0 +1,159 @@
+\documentclass[a4paper,12pt,titlepage,oneside]{book}
+\usepackage[polish]{babel}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}  
+\usepackage{lipsum}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{rotating, graphicx}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}  
+\usepackage{tocloft} 
+\usepackage{needspace}
+\usepackage[defernumbers=true, sorting=nyt]{biblatex}
+% \usepackage[sorting=nyt]{biblatex}
+\usepackage[a4paper, margin=1in]{geometry}
+% \usepackage[style=apa, sorting=nyt]{biblatex}  % APA citation style
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{references.bib}
+
+\newcommand{\lt}{\ensuremath <}
+
+
+% Page numbering customization
+\pagestyle{fancy} 
+\fancyhf{}  
+\fancyfoot[R]{\thepage} 
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+
+% Redefine the plain page style (used by ToC, LoF, LoT)
+\fancypagestyle{plain}{
+    \fancyhf{} % Clear headers and footers
+    \fancyfoot[R]{\thepage} % Place page numbers on the bottom-right
+}
+
+
+% Configure hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=blue,
+    citecolor=black,
+}
+
+% Use the same style for URLs as the text
+\urlstyle{same}
+
+% Customizing the appearance of the Table of Contents (ToC), List of Figures (LoF), and List of Tables (LoT)
+\setstretch{1.5}
+\renewcommand{\cfttoctitlefont}{\bfseries\fontsize{14}{16}\selectfont} % ToC title font size
+\renewcommand{\cftloftitlefont}{\bfseries\fontsize{14}{16}\selectfont} % LoF title font size
+\renewcommand{\cftlottitlefont}{\bfseries\fontsize{14}{16}\selectfont} % LoT title font size
+\renewcommand{\cftdotsep}{1} % Dot spacing in ToC, LoF, LoT
+
+\renewcommand{\cftchapdotsep}{\cftdotsep} 
+\renewcommand{\cftchapfont}{\normalfont} 
+\renewcommand{\cftchappagefont}{\normalfont} 
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} 
+
+% Adjust indentation and spacing 
+\setlength{\cftchapindent}{0pt} % No indent for chapter titles
+\setlength{\cftsecindent}{1em} % Indent for section titles
+\setlength{\cftsubsecindent}{3em} % Indent for subsection titles
+
+\setlength{\cftbeforechapskip}{0.1 em}
+\setlength{\cftbeforesecskip}{0.1 em}
+\setlength{\cftbeforesubsecskip}{0.1 em}
+
+
+% Customize figures and tables in ToC
+\renewcommand{\cftfigfont}{\fontsize{12}{14}\selectfont} 
+\renewcommand{\cfttabfont}{\fontsize{12}{14}\selectfont} 
+\renewcommand{\cftfigpresnum}{Figure~} % Prefix for figure numbers
+\setlength{\cftfignumwidth}{3.75em} % Space for figure numbers
+\renewcommand{\cftfigaftersnum}{:~} % Formatting after figure numbers
+
+\renewcommand{\cfttabpresnum}{Table~} % Prefix for table numbers
+\setlength{\cfttabnumwidth}{3.75em} % Space for table numbers
+\renewcommand{\cfttabaftersnum}{:~} % Formatting after table numbers
+
+
+
+% Left-align captions
+\captionsetup{justification=raggedright, singlelinecheck=false} % Left-align captions
+
+% Customize indentation for subsections and sub-subsections
+\setcounter{tocdepth}{3}                  % Include subsubsections in the Table of Contents
+\setlength{\cftsubsecindent}{2.4em}       % Indent subsections by 2.4em
+\setlength{\cftsubsubsecindent}{3.4em}    % Indent sub-subsections by 6em
+
+% Customize the section font
+\usepackage{sectsty} % For section style customization
+\usepackage{times}   % For Times New Roman font
+\usepackage[utf8]{inputenc} % For proper encoding
+\usepackage[T1]{fontenc}    % For proper font encoding
+
+\sectionfont{\fontsize{12}{14}\selectfont\rmfamily\textbf}
+\subsectionfont{\fontsize{12}{14}\selectfont\rmfamily\textit}
+\subsubsectionfont{\fontsize{12}{14}\selectfont\rmfamily\textit}
+
+% Customize chapter formatting
+\titleformat{\chapter}[block]
+  {\normalfont\bfseries\fontsize{14}{16}\selectfont\rmfamily\raggedright} 
+  {CHAPTER \thechapter:}{0pt}
+  {} 
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+\setcounter{secnumdepth}{3} % Enable subsubsection numbering
+
+  
+\begin{document}
+
+\makeatletter
+\renewcommand\subsubsection{%
+    \@startsection{subsubsection}{2}{0pt}{-\baselineskip}{0.25\baselineskip}%
+    {\setlength{\parindent}{0pt}\fontsize{12}{14}\selectfont\rmfamily\textit}%
+}
+\makeatother
+
+
+\input{title page}
+
+\input{Front Matter Pages/TOC_LOF_LOT}
+\input{Front Matter Pages/declaration}
+
+\input{chapters/1 cel} 
+% \input{chapters/2 wstep} 
+\input{chapters/3 Przeglad}
+\input{chapters/4 ML Rodzaje}
+\input{chapters/5 Regresja liniowa}
+\input{chapters/6 LASSO}
+\input{chapters/7 Ridge}
+\input{chapters/8 Elastic Net}
+\input{chapters/9 RDD}
+\input{chapters/10 Huber}
+\input{chapters/11 SVR}
+\input{chapters/12 Theil-Sen}
+\input{chapters/13 RFF}
+\input{chapters/14 wlasciwosci mech}
+\input{chapters/15 bulk}
+\input{chapters/16 shear}
+\input{chapters/17 poisson}
+% \input{chapters/18 Część praktyczna}
+
+\input{End Matter Pages/references} 
+
+\end{document}

@@ -1,0 +1,75 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{II. Uczenie maszynowe: Rodzaje \cite{alma991000280759708832}}
+\addcontentsline{toc}{chapter}{II. Uczenie maszynowe: Rodzaje}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Uczenie maszynowe (ML) można ogólnie podzielić na dwa główne rodzaje: \textbf{klasyfikację} i \textbf{regresję}. Obie są podstawowymi technikami stosowanymi w uczeniu nadzorowanym, ale służą różnym celom i są stosowane w różnych kontekstach. Ten przegląd skupi się głównie na regresji, szczegółowo opisując jej cechy, zastosowania i metodologie.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Klasyfikacja kontra regresja}
+
+\vspace{-1.0em}
+
+\begin{itemize}
+    \item \textbf{\textit{Klasyfikacja}}: To zadanie obejmuje przewidywanie wyników kategorycznych. Na przykład model klasyfikacji może przewidywać, czy wiadomość e-mail jest spamem, czy nie (\textit{klasyfikacja binarna}) lub klasyfikować obrazy do wielu kategorii (\textit{klasyfikacja wieloklasowa}). Wynik jest dyskretny, reprezentujący etykiety klas.
+    \item \textit{\textbf{Regresja}}: Natomiast regresja dotyczy przewidywania ciągłych wartości liczbowych. Na przykład modele regresji mogą przewidywać ceny domów na podstawie różnych cech, takich jak rozmiar, lokalizacja i liczba sypialni. Wynik jest liczbą rzeczywistą, co czyni ją odpowiednią do zadań, których celem jest oszacowanie ilości.
+\end{itemize}
+
+\section*{Definicja regresji}
+
+\vspace{-1.0em}
+
+Analiza regresji to metoda statystyczna stosowana do modelowania relacji między zmienną zależną (wynikiem) a jedną lub większą liczbą zmiennych niezależnych (predyktorami). Głównym celem regresji jest określenie, w jaki sposób zmiany zmiennych predykcyjnych wpływają na zmienną wynikową.
+
+\section*{Powszechne zastosowania regresji}
+
+\vspace{-1.0em}
+
+\begin{itemize}
+    \item \textbf{\textit{Finanse}}: przewidywanie cen akcji lub wskaźników ekonomicznych na podstawie danych historycznych.
+    \item \textbf{\textit{Nieruchomości}}: prognozowanie wartości nieruchomości na podstawie lokalizacji, wielkości i trendów rynkowych.
+    \item \textbf{\textit{Marketing}}: analiza zachowań konsumentów w celu przewidywania wyników sprzedaży na podstawie wydatków na reklamę.
+\end{itemize}
+
+\needspace{4\baselineskip}
+\section*{Metryki oceny regresji \cite{alma991000280759708832}}
+
+\vspace{-1.0em}
+
+Aby ocenić wydajność modeli regresji, powszechnie stosuje się kilka metryk:
+\begin{itemize}
+    \item \textbf{\textit{Średni błąd bezwzględny (MAE)}}: Mierzy średnią wielkość błędów wykorzystując tę samą skalę co mierzone dane. Nazywana też normą $L_{1}$.
+    \[
+    MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+    \]
+
+    \item \textbf{\textit{Średni błąd kwadratowy (MSE)}}: Mierzy średnią różnicę kwadratową między przewidywanymi a rzeczywistymi wartościami. Większe błędy są przez niego karane bardziej niż MAE. Nazywana też normą $L_{2}$.
+    \[
+    MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+    \]
+
+    \item \textbf{\textit{R-kwadrat ($R^2$)}}: Wskazuje, jak dobrze zmienne niezależne wyjaśniają zmienność zmiennej zależnej. Wartości mieszczą się w zakresie od 0 do 1, przy czym wyższe wartości oznaczają lepsze dopasowanie modelu.
+\end{itemize}
+
+\clearpage
+
+
+% Zmienne wspólne
+
+%     nn: Liczba obserwacji (przykładów) w zbiorze danych. Określa, ile par rzeczywistych i przewidywanych wartości jest analizowanych.
+
+% Zmienne specyficzne dla MAE
+
+%     yiyi​: Rzeczywista wartość (obserwacja) dla ii-tej obserwacji. To wartość, którą staramy się przewidzieć.
+%     y^iy^​i​: Przewidywana wartość dla ii-tej obserwacji. To wartość, którą model generuje na podstawie danych wejściowych.
+
+% Zmienne specyficzne dla MSE
+
+%     yiyi​: Rzeczywista wartość (obserwacja) dla ii-tej obserwacji, tak jak w MAE.
+%     y^iy^​i​: Przewidywana wartość dla ii-tej obserwacji, również identycznie jak w MAE.

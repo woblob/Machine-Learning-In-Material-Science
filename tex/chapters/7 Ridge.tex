@@ -1,0 +1,109 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{3. Regresja grzbietowa \cite{alma991000280759708832}}
+\label{sec:machine_learning_overview}
+\addcontentsline{toc}{section}{3. Regresja grzbietowa}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Regresja grzbietowa to technika regresji liniowej, która wykorzystuje regularyzację $L_2$ w celu rozwiązania problemów współliniowości i nadmiernego dopasowania. Dodając człon kary do funkcji kosztu, regresja grzbietowa pomaga ustabilizować oszacowania współczynników, szczególnie gdy istnieją wysokie korelacje między predyktorami.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Wzóry ogólne}
+\vspace{-1.0em}
+\label{sec:what_is_ml}
+
+
+    \textbf{ Jawny wzór regresji grzbietowej}: 
+    \begin{center}
+        
+$\boldsymbol{\hat \beta} = ( \boldsymbol{X}^T \boldsymbol{X} + \lambda \boldsymbol{I} )^{-1} \boldsymbol{X}^T \boldsymbol{y}$
+    \end{center}
+    
+gdzie:
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+ \item  $\boldsymbol{\hat \beta}$ to wektor szacowanych współczynników (lub wag) dla modelu regresji grzbietowej.
+ \item  $\boldsymbol{X}$ to macierz cech zawierająca zmienne niezależne (predyktory) używane w regresji. Każdy wiersz odpowiada obserwacji, a każda kolumna odpowiada cesze.
+\item $\boldsymbol{X}^T$ to transponowana macierz $\boldsymbol{X}$.
+\item $\lambda$ to stopień regularyzacji. Kontroluje on ilość skurczu stosowanego do współczynników. Wyższa wartość $\lambda$ skutkuje większym skurczem, co pomaga zmniejszyć nadmierne dopasowanie poprzez karanie dużych wartości współczynników.
+\item  $\boldsymbol{I}$: To przedstawia macierz jednostkową, która jest macierzą \\kwadratową z jedynkami na przekątnej i zerami w innych miejscach. 
+\item  $\boldsymbol{y}$: To wektor odpowiedzi zawierający obserwacje zmiennej zależnej, którą próbujemy przewidzieć.
+
+\end{itemize}
+\clearpage
+
+    \textbf{Funkcja kosztu dla regresji grzbietowej}: 
+    \begin{center}
+        $L = \sum_{i=1}^{n} (y_i - (\boldsymbol{x}_i^{\top} \boldsymbol{\beta} + \epsilon_i))^2 + \lambda \sum_{j=1}^{n} \beta_j^2$
+    \end{center}
+
+gdzie:
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+ \item  $L$ jest całkowitą funkcją kosztu.
+ \item  $y_i$ są rzeczywistymi wartościami zmiennej zależnej.
+
+ \item  $\boldsymbol{x}_i^{\top}$ to transponowany wektor zmiennych niezależnych (cechy).
+
+ \item  $\boldsymbol{\beta}$ to wektor współczynników modelu.
+
+ \item  $\lambda$ to parametr regularyzacji, który kontroluje siłę kary stosowanej do współczynników.
+\end{itemize}
+\item 
+
+\phantomsection
+\setstretch{1.5}
+\section*{Główne cechy regresji grzbietowej}
+\vspace{-1.0em}
+\label{sec:why_use_ml}
+
+
+\begin{itemize}
+\item Regresja grzbietowa, wprowadza człon regularyzacyjny, który wymusza na modelu utrzymanie jak najmniejszych wartości wag. Ten człon, opisany jako $\lambda \sum_{j=1}^{n} \beta_j^2$, przeciwdziała nadmiernemu dopasowaniu poprzez zmniejszenie współczynników w kierunku zera, ale nie ustawia ich dokładnie na zero. Dzięki temu wszystkie cechy pozostają w modelu.
+
+\item Regresja grzbietowa jest szczególnie skuteczna w sytuacjach, gdy zmienne predykcyjne są silnie skorelowane. Podobnie jak w przypadku modelu LASSO, regularyzacja zmniejsza wariancję i zapewnia skuteczniejsze oszacowania.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zalety regresji grzbietowej}
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+
+\begin{itemize}
+\item Jedną z głównych zalet regresji grzbietowej jest stabilność oszacowań. W porównaniu do zwykłej regresji najmniejszych kwadratów, regresja grzbietowa dostarcza bardziej stabilnych wyników, szczególnie w przestrzeniach wielowymiarowych, gdzie występuje współliniowość między zmiennymi. 
+
+\item Dodatkowo, metoda ta skutecznie zarządza kompromisem między odchyleniem a wariancją. Wprowadzając karę za rozmiar współczynników, regresja grzbietowa pomaga osiągnąć lepszą generalizację na niewidzianych danych, co jest istotne dla praktycznych zastosowań modelowania.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Ograniczenia regresji grzbietowej}
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+
+\begin{itemize}
+\item W przeciwieństwie do regresji Lasso, nie wykonuje wyboru zmiennej; wszystkie predyktory pozostają w modelu. To może być nieidealne z punktu widzenia łatwości interpretacji, zwłaszcza w przypadkach z wieloma cechami.
+
+\item Kolejnym ograniczeniem jest wrażliwość na wybór parametru regularyzacji $\lambda$. Wartość zbyt wysoka może prowadzić do niedopasowania modelu do danych, podczas gdy zbyt niska wartość może nie wystarczająco rozwiązać problem nadmiernego dopasowania.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Użyte parametry dla GridSearchCV \cite{url_Ridge, url_grid_search}}
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+\begin{itemize}
+\item {alpha}: siła regularyzacji. Kontroluje, jak bardzo karać duże współczynniki.
+
+\item {solver}: określa algorytm używany do optymalizacji.
+\end{itemize}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

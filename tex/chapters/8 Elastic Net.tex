@@ -1,0 +1,99 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+
+\section*{4. Regresja Elastic Net \cite{alma991000280759708832}}
+\label{sec:machine_learning_overview}
+\addcontentsline{toc}{section}{4. Regresja Elastic Net}
+\fontsize{12}{14}\selectfont
+\vspace{-1.0em}
+
+Elastic Net to technika regresji liniowej, która łączy właściwości regresji Lasso (regularyzacja $L_1$) i Ridge'a (regularyzacja $L_2$). Jest ona szczególnie przydatna w przypadku zbiorów danych, które mają wiele skorelowanych cech lub gdy liczba predyktorów przekracza liczbę obserwacji.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Wzór ogólny}
+\vspace{-1.0em}
+\label{sec:what_is_ml}
+
+
+Funkcję kosztu dla Elastic Net można wyrazić jako:
+\begin{center}
+    $$
+L = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_{i1} + \ldots + \beta_n x_{in}))^2 + r \lambda_1 \sum_{j=1}^{n} |\beta_j| + \frac{1-r}{2}\lambda_2 \sum_{j=1}^{n} \beta_j^2
+$$
+\end{center}
+
+
+gdzie:
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item $L$ jest całkowitą funkcją kosztu.
+\item $y_i$ to rzeczywiste wartości zmiennej zależnej.
+ \item  $x_{ij}$ to zmienne niezależne (cechy).
+ \item  $\beta_j$ to współczynniki modelu.
+ \item  $\lambda_1$ to parametr regularyzacji dla kary $L_1$ (Lasso).
+ \item  $\lambda_2$ to parametr regularyzacji dla kary $L_2$ (Ridge).
+ \item  $r$ współczynnik określający proporcję między karą $L_1$ (Lasso) a karą $L_2$ (Ridge) w funkcji kosztu.
+\end{itemize}
+\item 
+
+Współczynnik $r$ może przyjmować wartości z przedziału [0, 1]. Gdy $r$ jest bliskie 0, model Elastic Net jest bardziej podobny do modelu Ridge, a gdy $r$ jest bliskie 1, bardziej do modelu Lasso.
+
+\phantomsection
+\setstretch{1.5}
+\section*{Główne cechy}
+\vspace{-1.0em}
+\label{sec:why_use_ml}
+
+
+Regresja Elastic Net łączy w sobie elementy regularyzacji $L_1$ i $L_2$, co pozwala na jednoczesny wybór zmiennych oraz uwzględnienie współliniowości między predyktorami. To podwójne podejście jest szczególnie korzystne w sytuacjach, gdy cechy są silnie skorelowane, co może stanowić problem dla samego modelu Lasso. Składnik $L_1$ promuje rzadkość w modelu, ustawiając niektóre współczynniki na zero, podczas gdy składnik $L_2$ zapewnia stabilność, zmniejszając wartości współczynników skorelowanych predyktorów.
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zalety }
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+
+Jedną z głównych zalet modelu Elastic Net jest jego elastyczność. Dzięki możliwości dostosowywania zarówno parametru regularyzacji $\lambda_1$, jak i $\lambda_2$, model może być optymalizowany do różnych zestawów danych i wymagań modelowania, co czyni go wszechstronnym narzędziem w wielu problemach regresji. Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadku silnej korelacji między nimi lub gdy liczba predyktorów przewyższa liczbę obserwacji.
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Ograniczenia }
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+
+\begin{itemize}
+
+\item Elastic Net ma dwa parametry regularyzacji, co utrudnia dostrajanie modelu. Wymaga starannego dostrajania hiperparametrów, aby uzyskać optymalną wydajność, ale może prowadzić do modeli trudniejszych w interpretacji.
+\end{itemize}
+
+\phantomsection
+\setstretch{1.5}
+\section*{Zastosowania }
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+Elastic Net znajduje szerokie zastosowanie w dziedzinach, gdzie wybór cech i współliniowość są kluczowe. Łącząca zalety regresji Lasso i Ridge, oferująca solidne rozwiązanie do modelowania liniowego w złożonych zbiorach danych z skorelowanymi cechami.
+
+
+\phantomsection
+\setstretch{1.5}
+\section*{Użyte parametry dla GridSearchCV \cite{url_ElasticNet, url_grid_search}}
+\vspace{-1.0em}
+\label{sec:ml_challenges}
+
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+ \item  alpha: kontroluje ogólną siłę regularyzacji stosowanej do modelu.
+\item tol: definiuje tolerancję dla kryteriów zatrzymania w algorytmie optymalizacji.
+\item l1\_ratio: określa mieszankę pomiędzy regularyzacją $L_1$ (Lasso) i $L_2$ (Ridge).
+\item selection: określa strategię używaną do aktualizacji współczynników podczas optymalizacji.
+\end{itemize}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
