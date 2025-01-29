@@ -24,7 +24,7 @@ excluded_columns = predicted_properties + [
 
 
 def extract_data_to_fit(
-        table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
+    table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
 ) -> Data_transformed:
     """
     Extracts and transforms data for model fitting.

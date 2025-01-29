@@ -10,3 +10,4 @@ tex do prezentacji
 outputs
 temp*
 *~
+*.html
