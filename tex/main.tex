@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,titlepage,oneside]{book}
+\documentclass[openany,a4paper,12pt,titlepage,twoside]{book}
 \usepackage[polish]{babel}
 \usepackage{times}
 \usepackage[utf8]{inputenc}
@@ -23,9 +23,14 @@
 \usepackage{tocloft} 
 \usepackage{needspace}
 \usepackage[defernumbers=true, sorting=nyt]{biblatex}
-% \usepackage[sorting=nyt]{biblatex}
-\usepackage[a4paper, margin=1in]{geometry}
-% \usepackage[style=apa, sorting=nyt]{biblatex}  % APA citation style
+\usepackage[a4paper,
+inner=3.5cm,
+outer=2cm,
+top=2.5cm,     
+bottom=2.5cm    
+]{geometry}
+
+
 \DeclareLanguageMapping{english}{english-apa}
 \addbibresource{references.bib}
 

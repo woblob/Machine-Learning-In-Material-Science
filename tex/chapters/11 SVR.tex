@@ -9,7 +9,7 @@
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
 
-Liniowa regresja wektorów nośnych (Liniowy SVR) jest odmianą regresji wektorów nośnych (SVR), która wykorzystuje liniowe jądro do modelowania relacji między cechami wejściowymi a ciągłą zmienną docelową. Jest ona szczególnie przydatna, gdy relację można przybliżyć jako liniową, co czyni ją wydajną obliczeniowo i prostą do wdrożenia.
+\hspace{1.5cm} Liniowa regresja wektorów nośnych (Liniowy SVR) jest odmianą regresji wektorów nośnych (SVR), która wykorzystuje liniowe jądro do modelowania relacji między cechami wejściowymi a ciągłą zmienną docelową. Jest ona szczególnie przydatna, gdy relację można przybliżyć jako liniową, co czyni ją wydajną obliczeniowo i prostą do wdrożenia.
 
 \phantomsection
 \setstretch{1.5}
@@ -17,7 +17,7 @@ Liniowa regresja wektorów nośnych (Liniowy SVR) jest odmianą regresji wektor�
 \vspace{-1.0em}
 \label{sec:what_is_ml}
 
-W odróżnieniu od regresji zwykłej, która próbuje dopasować model do wszystkich wartości, Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
+\hspace{1.5cm} W odróżnieniu od regresji zwykłej, która próbuje dopasować model do wszystkich wartości, Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
 
 Są dwa rodzaje marginesów: twardy i miękki. 
 Twardy margines jest bardziej rygorystyczny i nie pozwala na błędy poza nim. Miękki margines jest bardziej tolerancyjny i umożliwia błędy poza nim, kompensując to karą za takie błędy.
@@ -28,7 +28,7 @@ Twardy margines jest bardziej rygorystyczny i nie pozwala na błędy poza nim. M
 \vspace{-1.0em}
 \label{sec:what_is_ml}
 
-Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
+\hspace{1.5cm} Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
 
 Funkcja decyzyjna:
 
@@ -53,6 +53,7 @@ $$
 \frac{1}{2} \boldsymbol{w}^T \cdot \boldsymbol{w} + C \sum_{i=1}^{n} \zeta
 $$
 
+\needspace{4\baselineskip}
 pod warunkiem, że:
 
 $$
@@ -62,15 +63,15 @@ $$
 Gdzie:
 \begin{itemize}
 \setlength\itemsep{-0.5em}
- \item  $\boldsymbol{w}$ - reprezentuje wagi wektorów nośnych
+ \item  $\boldsymbol{w}$ - reprezentuje wagi wektorów nośnych,
 
-\item $C$ - jest parametrem regularyzacji, który kontroluje kompromis między maksymalizacją marginesu a minimalizacją błędu
+\item $C$ - jest parametrem regularyzacji, który kontroluje kompromis między maksymalizacją marginesu a minimalizacją błędu,
 
- \item  $\zeta$ - zmienna swobodna ("slack")
+ \item  $\zeta$ - zmienna swobodna ("slack"),
 
- \item  $t^{(i)}$ - etykieta klasy dla przykładu $i$
+ \item  $t^{(i)}$ - etykieta klasy dla przykładu $i$,
 
- \item  $\boldsymbol{x}^{(i)}$ - wektor cech dla przykładu $i$
+ \item  $\boldsymbol{x}^{(i)}$ - wektor cech dla przykładu $i$,
 
 \item $b$ - przesunięcie (bias)
 \end{itemize}
@@ -82,7 +83,7 @@ Gdzie:
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Ten model jest wydajny obliczeniowo, szczególnie w przypadku dużych zestawów danych, ponieważ unika złożoności związanej z jądrami nieliniowymi.
+\hspace{1.5cm} Ten model jest wydajny obliczeniowo, szczególnie w przypadku dużych zestawów danych, ponieważ unika złożoności związanej z jądrami nieliniowymi.
 Podobnie jak jej nieliniowe odpowiedniki, liniowy SVR jest mniej wrażliwy na wartości odstające ze względu na jego funkcję kosztu niewrażliwą na $\epsilon$.
 
 
@@ -92,7 +93,7 @@ Podobnie jak jej nieliniowe odpowiedniki, liniowy SVR jest mniej wrażliwy na wa
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Liniowa regresja wektorów nośnych zakłada liniową zależność między cechami a zmienną docelową. Jeśli podstawowa zależność jest nieliniowa, ten model może nie działać dobrze w porównaniu z innymi technikami regresji, które mogą wychwytywać nieliniowości.
+\hspace{1.5cm} Liniowa regresja wektorów nośnych zakłada liniową zależność między cechami a zmienną docelową. Jeśli podstawowa zależność jest nieliniowa, ten model może nie działać dobrze w porównaniu z innymi technikami regresji, które mogą wychwytywać nieliniowości.
 
 Wydajność liniowej regresji wektorów nośnych zależy od starannego dostrojenia parametrów, takich jak $C$ i $\epsilon$, co może wymagać walidacji krzyżowej.
 
@@ -111,4 +112,4 @@ Wydajność liniowej regresji wektorów nośnych zależy od starannego dostrojen
 \item tol: ustawia tolerancję dla kryteriów zatrzymania w procesie optymalizacji.
 \end{itemize}
 % \clearpage
-\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

@@ -4,13 +4,14 @@
 \fontsize{14}{16}\selectfont
 \setlength{\parindent}{0pt}
 
+\needspace{4\baselineskip}
 \section*{4. Regresja Elastic Net \cite{alma991000280759708832}}
 \label{sec:machine_learning_overview}
 \addcontentsline{toc}{section}{4. Regresja Elastic Net}
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
 
-Elastic Net to technika regresji liniowej, która łączy właściwości regresji Lasso (regularyzacja $L_1$) i Ridge'a (regularyzacja $L_2$). Jest ona szczególnie przydatna w przypadku zbiorów danych, które mają wiele skorelowanych cech lub gdy liczba predyktorów przekracza liczbę obserwacji.
+\hspace{1.5cm} Elastic Net to technika regresji liniowej, która łączy właściwości regresji Lasso (regularyzacja $L_1$) i Ridge'a (regularyzacja $L_2$). Jest ona szczególnie przydatna w przypadku zbiorów danych, które mają wiele skorelowanych cech lub gdy liczba predyktorów przekracza liczbę obserwacji.
 
 \phantomsection
 \setstretch{1.5}
@@ -40,7 +41,7 @@ gdzie:
 \end{itemize}
 \item 
 
-Współczynnik $r$ może przyjmować wartości z przedziału [0, 1]. Gdy $r$ jest bliskie 0, model Elastic Net jest bardziej podobny do modelu Ridge, a gdy $r$ jest bliskie 1, bardziej do modelu Lasso.
+\hspace{1.5cm} Współczynnik $r$ może przyjmować wartości z przedziału [0, 1]. Gdy $r$ jest bliskie 0, model Elastic Net jest bardziej podobny do modelu Ridge, a gdy $r$ jest bliskie 1, bardziej do modelu Lasso.
 
 \phantomsection
 \setstretch{1.5}
@@ -48,8 +49,7 @@ Współczynnik $r$ może przyjmować wartości z przedziału [0, 1]. Gdy $r$ jes
 \vspace{-1.0em}
 \label{sec:why_use_ml}
 
-
-Regresja Elastic Net łączy w sobie elementy regularyzacji $L_1$ i $L_2$, co pozwala na jednoczesny wybór zmiennych oraz uwzględnienie współliniowości między predyktorami. To podwójne podejście jest szczególnie korzystne w sytuacjach, gdy cechy są silnie skorelowane, co może stanowić problem dla samego modelu Lasso. Składnik $L_1$ promuje rzadkość w modelu, ustawiając niektóre współczynniki na zero, podczas gdy składnik $L_2$ zapewnia stabilność, zmniejszając wartości współczynników skorelowanych predyktorów.
+\hspace{1.5cm} Regresja Elastic Net łączy w sobie elementy regularyzacji $L_1$ i $L_2$, co pozwala na jednoczesny wybór zmiennych oraz uwzględnienie współliniowości między predyktorami. To podwójne podejście jest szczególnie korzystne w sytuacjach, gdy cechy są silnie skorelowane, co może stanowić problem dla samego modelu Lasso. Składnik $L_1$ promuje rzadkość w modelu, ustawiając niektóre współczynniki na zero, podczas gdy składnik $L_2$ zapewnia stabilność, zmniejszając wartości współczynników skorelowanych predyktorów.
 
 
 \phantomsection
@@ -59,8 +59,9 @@ Regresja Elastic Net łączy w sobie elementy regularyzacji $L_1$ i $L_2$, co po
 \label{sec:ml_challenges}
 
 
-Jedną z głównych zalet modelu Elastic Net jest jego elastyczność. Dzięki możliwości dostosowywania zarówno parametru regularyzacji $\lambda_1$, jak i $\lambda_2$, model może być optymalizowany do różnych zestawów danych i wymagań modelowania, co czyni go wszechstronnym narzędziem w wielu problemach regresji. Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadku silnej korelacji między nimi lub gdy liczba predyktorów przewyższa liczbę obserwacji.
-
+\hspace{1.5cm} Jedną z głównych zalet modelu Elastic Net jest jego elastyczność.
+Dzięki możliwości dostosowywania zarówno parametru regularyzacji $\lambda_1$, jak i $\lambda_2$, model może być optymalizowany do różnych zestawów danych i wymagań modelowania, co czyni go wszechstronnym narzędziem w wielu problemach regresji.
+Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadku silnej korelacji między nimi lub gdy liczba predyktorów przewyższa liczbę obserwacji.
 
 \phantomsection
 \setstretch{1.5}
@@ -68,11 +69,8 @@ Jedną z głównych zalet modelu Elastic Net jest jego elastyczność. Dzięki m
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
+\hspace{1.5cm} Elastic Net ma dwa parametry regularyzacji, co utrudnia dostrajanie modelu. Wymaga starannego dostrajania hiperparametrów, aby uzyskać optymalną wydajność, ale może prowadzić do modeli trudniejszych w interpretacji.
 
-\begin{itemize}
-
-\item Elastic Net ma dwa parametry regularyzacji, co utrudnia dostrajanie modelu. Wymaga starannego dostrajania hiperparametrów, aby uzyskać optymalną wydajność, ale może prowadzić do modeli trudniejszych w interpretacji.
-\end{itemize}
 
 \phantomsection
 \setstretch{1.5}
@@ -80,7 +78,7 @@ Jedną z głównych zalet modelu Elastic Net jest jego elastyczność. Dzięki m
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Elastic Net znajduje szerokie zastosowanie w dziedzinach, gdzie wybór cech i współliniowość są kluczowe. Łącząca zalety regresji Lasso i Ridge, oferująca solidne rozwiązanie do modelowania liniowego w złożonych zbiorach danych z skorelowanymi cechami.
+\hspace{1.5cm} Elastic Net znajduje szerokie zastosowanie w dziedzinach, gdzie wybór cech i współliniowość są kluczowe. Łącząca zalety regresji Lasso i Ridge, oferująca solidne rozwiązanie do modelowania liniowego w złożonych zbiorach danych z skorelowanymi cechami.
 
 
 \phantomsection
@@ -96,4 +94,4 @@ Elastic Net znajduje szerokie zastosowanie w dziedzinach, gdzie wybór cech i ws
 \item l1\_ratio: określa mieszankę pomiędzy regularyzacją $L_1$ (Lasso) i $L_2$ (Ridge).
 \item selection: określa strategię używaną do aktualizacji współczynników podczas optymalizacji.
 \end{itemize}
-\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

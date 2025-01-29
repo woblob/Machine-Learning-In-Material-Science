@@ -8,7 +8,7 @@
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
 
-Regresor Hubera łączy zasady najmniejszych kwadratów i funkcje kosztu błędu bezwzględnego. Jest skuteczna w scenariuszach, w których zbiór danych zawiera wartości odstające, ponieważ zmniejsza ich wpływ na przewidywania modelu. 
+\hspace{1.5cm} Regresor Hubera łączy zasady najmniejszych kwadratów i funkcje kosztu błędu bezwzględnego. Jest skuteczna w scenariuszach, w których zbiór danych zawiera wartości odstające, ponieważ zmniejsza ich wpływ na przewidywania modelu. 
 
 \phantomsection
 \setstretch{1.5}
@@ -35,7 +35,7 @@ gdzie:
  \item  $\delta$ jest parametrem progowym, który określa punkt, w którym funkcja kosztu przechodzi z kwadratowej na liniową.
 \end{itemize}
 
-Funkcja kosztu Hubera jest zdefiniowana w taki sposób, że dla reszt (różnic między wartościami rzeczywistymi a przewidywanymi) mniejszych niż parametr progowy $\delta$, koszt zachowuje się jak błąd kwadratowy. To oznacza, że jest bardziej wrażliwy na małe błędy. Natomiast dla reszt większych niż $\delta$ koszt przechodzi na liniową formę. Sprawia to, że model staje się mniej wrażliwy na wartości odstające. 
+\hspace{1.5cm} Funkcja kosztu Hubera jest zdefiniowana w taki sposób, że dla reszt (różnic między wartościami rzeczywistymi a przewidywanymi) mniejszych niż parametr progowy $\delta$, koszt zachowuje się jak błąd kwadratowy. To oznacza, że jest bardziej wrażliwy na małe błędy. Natomiast dla reszt większych niż $\delta$ koszt przechodzi na liniową formę. Sprawia to, że model staje się mniej wrażliwy na wartości odstające. 
 
 Wybór parametru $\delta$ w regresorze Hubera jest kluczowy dla wydajności modelu. Mniejsza wartość $\delta$ sprawia, że model staje się bardziej wrażliwy na wartości odstające, co może być korzystne w przypadku danych o niskiej liczbie anomalii, natomiast większa wartość $\delta$ zwiększa odporność modelu na wartości odstające, co czyni go bardziej stabilnym w trudniejszych warunkach.
 % \clearpage
@@ -45,7 +45,7 @@ Wybór parametru $\delta$ w regresorze Hubera jest kluczowy dla wydajności mode
 \section*{Zalety }
 \vspace{-1.0em}
 
-Regresor Hubera cechuje się małą wrażliwością na wartości odstające w porównaniu ze zwykłą regresją najmniejszych kwadratów. Dzięki temu jest preferowanym wyborem w przypadku zbiorów danych z obserwacjami anomalnymi. Ponadto, oferuje płynne przejście między kwadratowymi i liniowymi funkcjami kosztów, co zapewnia równowagę między wrażliwością na małe błędy a odpornością na duże błędy.
+\hspace{1.5cm} Regresor Hubera cechuje się małą wrażliwością na wartości odstające w porównaniu ze zwykłą regresją najmniejszych kwadratów. Dzięki temu jest preferowanym wyborem w przypadku zbiorów danych z obserwacjami anomalnymi. Ponadto, oferuje płynne przejście między kwadratowymi i liniowymi funkcjami kosztów, co zapewnia równowagę między wrażliwością na małe błędy a odpornością na duże błędy.
 
 
 \phantomsection
@@ -54,7 +54,7 @@ Regresor Hubera cechuje się małą wrażliwością na wartości odstające w po
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Wybór parametru $\delta$ może znacząco wpłynąć na wydajność modelu. Wybór odpowiedniej wartości może wymagać walidacji krzyżowej lub wiedzy o domenie.
+\hspace{1.5cm} Wybór parametru $\delta$ może znacząco wpłynąć na wydajność modelu. Wybór odpowiedniej wartości może wymagać walidacji krzyżowej lub wiedzy o domenie.
 Ponadto, regresja Hubera może być bardziej intensywna obliczeniowo niż prostsze modele, szczególnie w przestrzeniach wielowymiarowych. Model ten może nie być tak skuteczny w przypadkach, gdy dane są silnie skorelowane lub gdy istnieją silne nieliniowe relacje między zmiennymi.
 
 
@@ -64,7 +64,7 @@ Ponadto, regresja Hubera może być bardziej intensywna obliczeniowo niż prosts
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Ten model jest często preferowanym wyborem w przypadkach, gdy dane mogą zawierać anomalie.
+\hspace{1.5cm} Ten model jest często preferowanym wyborem w przypadkach, gdy dane mogą zawierać anomalie.
 Regresor Hubera zapewnia solidną alternatywę dla tradycyjnych technik regresji.
 Łączy zalety zarówno metod najmniejszych kwadratów, jak i metod błędów bezwzględnych.
 Dzięki temu nadaje się do zestawów danych z wartościami odstającymi, przy jednoczesnym zachowaniu dobrej wydajności predykcyjnej.
@@ -72,6 +72,7 @@ Dzięki temu nadaje się do zestawów danych z wartościami odstającymi, przy j
 
 \phantomsection
 \setstretch{1.5}
+\needspace{4\baselineskip}
 \section*{Użyte parametry dla GridSearchCV \cite{url_HuberRegressor, url_grid_search}}
 \vspace{-1.0em}
 \label{sec:ml_challenges}
@@ -84,5 +85,5 @@ Dzięki temu nadaje się do zestawów danych z wartościami odstającymi, przy j
 \item fit\_intercept: parametr logiczny wskazuje, czy obliczyć przecięcie dla tego modelu. Krytyczne dla danych standaryzowanych. 
 \end{itemize}
 % \clearpage
-\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 

@@ -8,7 +8,8 @@
 \fontsize{12}{14}\selectfont
 \vspace{\baselineskip} 
 
-Aby zrozumieć, jak materiały reagują na przyłożone siły, należy zacząć od prawa Hooke'a, które jest fundamentalne w badaniu właściwości mechanicznych ciał stałych. \textbf{Prawo Hooke'a} stwierdza, że odkształcenie (deformacja) materiału jest wprost proporcjonalne do przyłożonego naprężenia (siła na jednostkę powierzchni) w granicach sprężystości tego materiału. Matematycznie, uproszczoną wersję prawa Hooke'a można wyrazić jako \cite{alma991053253943408832, alma991000386409708832}:
+\hspace{1.5cm} Aby zrozumieć, jak materiały reagują na przyłożone siły, należy zacząć od prawa Hooke'a, które jest fundamentalne w badaniu właściwości mechanicznych ciał stałych. \\
+\hspace{1.5cm} \textbf{Prawo Hooke'a} stwierdza, że odkształcenie (deformacja) materiału jest wprost proporcjonalne do przyłożonego naprężenia (siła na jednostkę powierzchni) w granicach sprężystości tego materiału. Matematycznie, uproszczoną wersję prawa Hooke'a można wyrazić jako \cite{alma991053253943408832, alma991000386409708832}:
 
 $$
 \sigma = E \cdot \epsilon
@@ -30,7 +31,7 @@ Pełną ogólną postać macierzową, która wiąże naprężenie i odkształcen
 \vspace{-1.0em}
 \label{sec:spacing_font_size}
 \addcontentsline{toc}{section}{1. Uogólnione prawo Hooke'a w postaci macierzowej}
-W przypadku materiału liniowo sprężystego zależność między naprężeniem $\sigma$ a odkształceniem $\epsilon$ można przedstawić jako:
+\hspace{1.5cm} W przypadku materiału liniowo sprężystego zależność między naprężeniem $\sigma$ a odkształceniem $\epsilon$ można przedstawić jako:
 
 $$
 \begin{bmatrix}
@@ -61,26 +62,25 @@ C_{16} & C_{26} & C_{36} & C_{46} & C_{56} & C_{66}
 $$
 
 gdzie $\sigma$ odpowiada wektorowi naprężeń, $E$ macierzy sztywności sprężystej, a $\epsilon$ wektorowi odkształceń.
-\begin{itemize}
 
-    \item {Wektor naprężeń}: Wektor naprężeń obejmuje naprężenia normalne ($\sigma_1, \sigma_2, \sigma_3$) i naprężenia ścinające ($\tau_{23}, \tau_{13}, \tau_{12}$).
-    
-    \item {Macierz sztywności sprężystej}: Macierz $C$ (lub macierz sztywności) zawiera stałe materiałowe, które definiują, w jaki sposób naprężenie odnosi się do odkształcenia. Każdy $C_{ij}$ reprezentuje związek między składową $i$ naprężenia a składową $j$ odkształcenia.
-    
-    \item {Wektor odkształceń}: Wektor odkształceń składa się z odkształceń normalnych ($\epsilon_1, \epsilon_2, \epsilon_3$) i odkształceń ścinających ($\gamma_{23}, \gamma_{13}, \gamma_{12}$).
+\hspace{1.5cm}  \textbf{Wektor naprężeń}: obejmuje naprężenia normalne ($\sigma_1, \sigma_2, \sigma_3$) i naprężenia ścinające ($\tau_{23}, \tau_{13}, \tau_{12}$).
 
-\end{itemize}
+\hspace{1.5cm}  \textbf{Macierz sztywności sprężystej}: Macierz $C$ (lub macierz sztywności) zawiera stałe materiałowe, które definiują, w jaki sposób naprężenie odnosi się do odkształcenia. Każdy $C_{ij}$ reprezentuje związek między składową $i$ naprężenia a składową $j$ odkształcenia.
 
-Ze względu na symetryczną naturę zarówno tensorów naprężeń, jak i odkształceń w sprężystości liniowej, macierz sztywności jest również symetryczna. Oznacza to, że $C_{ij}=C_{ji}$, co zmniejsza liczbę niezależnych stałych potrzebnych do pełnego opisu zachowania materiału.
+\hspace{1.5cm}  \textbf{Wektor odkształceń}: składa się z odkształceń normalnych ($\epsilon_1, \epsilon_2, \epsilon_3$) i odkształceń ścinających ($\gamma_{23}, \gamma_{13}, \gamma_{12}$).
 
-Ta uogólniona forma jest kluczowa dla analizy złożonych warunków obciążenia w zastosowaniach inżynieryjnych, szczególnie w materiałach, które nie wykazują jednolitych właściwości we wszystkich kierunkach (materiały \textit{anizotropowe}). Zrozumienie tej zależności pozwala przewidywać, jak materiały będą się zachowywać pod różnymi typami obciążeń.
+\hspace{1.5cm} Ze względu na symetryczną naturę zarówno tensorów naprężeń, jak i odkształceń w sprężystości liniowej, macierz sztywności jest również symetryczna. Oznacza to, że $C_{ij}=C_{ji}$, co zmniejsza liczbę niezależnych stałych potrzebnych do pełnego opisu zachowania materiału.
 
-Uogólnioną formę prawa Hooke'a można zredukować, uwzględniając symetrie materiału. 
+\hspace{1.5cm} Ta uogólniona forma jest kluczowa dla analizy złożonych warunków obciążenia w zastosowaniach inżynieryjnych, szczególnie w materiałach, które nie wykazują jednolitych właściwości we wszystkich kierunkach (materiały \textit{anizotropowe}). Zrozumienie tej zależności pozwala przewidywać, jak materiały będą się zachowywać pod różnymi typami obciążeń.
 
-Na przykład w przypadku materiałów izotropowych, które mają jednorodne właściwości we wszystkich kierunkach, liczba niezależnych współczynników w macierzy sztywności może być zmniejszona do nawet tylko dwóch. 
+\hspace{1.5cm} Uogólnioną formę prawa Hooke'a można zredukować, uwzględniając symetrie materiału. 
 
-W takich przypadkach można zastosować uproszczone modele, które uwzględniają tylko kilka kluczowych parametrów materiałowych, co upraszcza analizy i obliczenia związane z zachowaniem materiału pod wpływem obciążeń.
+\hspace{1.5cm} Na przykład w przypadku materiałów izotropowych, które mają jednorodne właściwości we wszystkich kierunkach, liczba niezależnych współczynników w macierzy sztywności może być zmniejszona do nawet tylko dwóch. 
 
+\hspace{1.5cm} W takich przypadkach można zastosować uproszczone modele, które uwzględniają tylko kilka kluczowych parametrów materiałowych, co upraszcza analizy i obliczenia związane z zachowaniem materiału pod wpływem obciążeń.
+\needspace{4\baselineskip}
+
+Symetryczna macierz dla materiału izotropowego:
 $$
 \begin{bmatrix}
 C_{11} & C_{12} & C_{12} & 0 & 0 & 0 \\
@@ -91,9 +91,8 @@ C_{11} & C_{12} & C_{12} & 0 & 0 & 0 \\
 . & . & . & . & . & \frac{C_{11} - C_{12}}{2}
 \end{bmatrix}
 $$
-Symetryczna macierz dla materiału izotropowego.
 
-\clearpage
+% \clearpage
  Ważne pojęcia \cite{kittel1976wstep, alma991053253943408832}:
 \begin{itemize}
     \item {\textbf{Odkształcenie sprężyste} występuje, gdy materiały są poddawane naprężeniom, które nie są zbyt duże, co pozwala im powrócić do pierwotnego kształtu po usunięciu naprężenia. Tego rodzaju deformacja jest istotna w kontekście projektowania i analizy materiałów, ponieważ umożliwia im funkcjonowanie w warunkach zmiennych obciążeń bez ryzyka trwałych uszkodzeń.}

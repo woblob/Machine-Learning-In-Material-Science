@@ -9,7 +9,7 @@
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
 
-Regresor drzewa decyzyjnego to nieliniowy model regresji. Wykorzystuje strukturę przypominającą drzewo do tworzenia prognoz na podstawie wartości cech wejściowych. Jest częścią szerszej rodziny algorytmów drzew decyzyjnych, które mogą być używane zarówno do zadań klasyfikacji, jak i regresji. Ten model jest zdolny do wychwytywania złożonych wzorców w danych, a jednocześnie wrażliwy na nadmierne dopasowanie bez odpowiedniej regularyzacji.
+\hspace{1.5cm} Regresor drzewa decyzyjnego to nieliniowy model regresji. Wykorzystuje strukturę przypominającą drzewo do tworzenia prognoz na podstawie wartości cech wejściowych. Jest częścią szerszej rodziny algorytmów drzew decyzyjnych, które mogą być używane zarówno do zadań klasyfikacji, jak i regresji. Ten model jest zdolny do wychwytywania złożonych wzorców w danych, a jednocześnie wrażliwy na nadmierne dopasowanie bez odpowiedniej regularyzacji.
 
 \phantomsection
 \setstretch{1.5}
@@ -17,7 +17,7 @@ Regresor drzewa decyzyjnego to nieliniowy model regresji. Wykorzystuje struktur�
 \vspace{-1.0em}
 \label{sec:what_is_ml}
 
-Model składa się z węzłów i gałęzi. Każdy węzeł wewnętrzny reprezentuje cechę (lub atrybut), każda gałąź reprezentuje regułę decyzyjną, a każdy węzeł liścia reprezentuje przewidywany wynik (wartość zmiennej docelowej). Ogólna budowa przypomina strukturę drzewa.
+\hspace{1.5cm} Model składa się z węzłów i gałęzi. Każdy węzeł wewnętrzny reprezentuje cechę (lub atrybut), każda gałąź reprezentuje regułę decyzyjną, a każdy węzeł liścia reprezentuje przewidywany wynik (wartość zmiennej docelowej). Ogólna budowa przypomina strukturę drzewa.
 
 Regresor drzewa decyzyjnego dzieli dane w każdym węźle na podstawie określonych kryteriów, takich jak minimalizacja średniego błędu kwadratowego (MSE) lub średniego błędu bezwzględnego (MAE). Celem jest utworzenie jednorodnych podzbiorów danych, które są jak najbardziej podobne pod względem zmiennej docelowej.
 
@@ -31,7 +31,7 @@ Proces podziału jest kontynuowany rekurencyjnie, aż do spełnienia kryterium z
 \label{sec:ml_challenges}
 
 
-CART (Drzewa klasyfikacji i regresji) to algorytm używany do tworzenia drzew decyzyjnych zarówno dla zadań klasyfikacji, jak i regresji. W przypadku regresji, CART konstruuje drzewo, które przewiduje ciągłe wyniki, dzieląc dane na podzbiory na podstawie wartości cech.
+\hspace{1.5cm} CART (Drzewa klasyfikacji i regresji) to algorytm używany do tworzenia drzew decyzyjnych zarówno dla zadań klasyfikacji, jak i regresji. W przypadku regresji, CART konstruuje drzewo, które przewiduje ciągłe wyniki, dzieląc dane na podzbiory na podstawie wartości cech.
 
 \phantomsection
 \setstretch{1.5}
@@ -52,7 +52,7 @@ CART (Drzewa klasyfikacji i regresji) to algorytm używany do tworzenia drzew de
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Funkcja kosztu używana w CART do regresji opiera się na minimalizacji średniego błędu kwadratowego (MSE). 
+\hspace{1.5cm} Funkcja kosztu używana w CART do regresji opiera się na minimalizacji średniego błędu kwadratowego (MSE). 
 Podczas każdego podziału CART oblicza MSE dla potencjalnych podziałów i wybiera ten, który minimalizuje ten błąd we wszystkich powstałych węzłach podrzędnych.
 
 \phantomsection
@@ -61,7 +61,7 @@ Podczas każdego podziału CART oblicza MSE dla potencjalnych podziałów i wybi
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Drzewa decyzyjne oraz algorytm CART są łatwe do wizualizacji i interpretacji, co czyni je prostymi do zrozumienia sposobu podejmowania decyzji. Mogą uchwycić złożone relacje między cechami a zmienną docelową bez konieczności przyjmowania założeń liniowych. Drzewa decyzyjne mogą również zapewnić wgląd w znaczenie cech, pomagając zidentyfikować zmienne, które mają największy wpływ na przewidywania.
+\hspace{1.5cm} Drzewa decyzyjne oraz algorytm CART są łatwe do wizualizacji i interpretacji, co czyni je prostymi do zrozumienia sposobu podejmowania decyzji. Mogą uchwycić złożone relacje między cechami a zmienną docelową bez konieczności przyjmowania założeń liniowych. Drzewa decyzyjne mogą również zapewnić wgląd w znaczenie cech, pomagając zidentyfikować zmienne, które mają największy wpływ na przewidywania.
 Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, co czyni go wszechstronnym narzędziem w różnych zastosowaniach.
 
 
@@ -71,7 +71,7 @@ Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, c
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Drzewa decyzyjne są podatne na nadmierne dopasowanie, szczególnie jeśli pozwoli się im urosnąć zbyt głęboko, co prowadzi do słabej generalizacji niewidzianych danych. Dodatkowo niewielkie zmiany w danych mogą skutkować znacząco różnymi strukturami drzew, co czyni je wrażliwymi na szum w zestawie danych.
+\hspace{1.5cm} Drzewa decyzyjne są podatne na nadmierne dopasowanie, szczególnie jeśli pozwoli się im urosnąć zbyt głęboko, co prowadzi do słabej generalizacji niewidzianych danych. Dodatkowo niewielkie zmiany w danych mogą skutkować znacząco różnymi strukturami drzew, co czyni je wrażliwymi na szum w zestawie danych.
 
 \phantomsection
 \setstretch{1.5}
@@ -79,7 +79,7 @@ Drzewa decyzyjne są podatne na nadmierne dopasowanie, szczególnie jeśli pozwo
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
-Aby złagodzić nadmierne dopasowanie i poprawić stabilność modeli drzew decyzyjnych, można dostrajać hiperparametry takie jak maksymalna głębokość, minimalna liczba próbek wymaganych do podziału węzła wewnętrznego oraz minimalna liczba próbek w węźle liścia.
+\hspace{1.5cm} Aby złagodzić nadmierne dopasowanie i poprawić stabilność modeli drzew decyzyjnych, można dostrajać hiperparametry takie jak maksymalna głębokość, minimalna liczba próbek wymaganych do podziału węzła wewnętrznego oraz minimalna liczba próbek w węźle liścia.
 
 
 

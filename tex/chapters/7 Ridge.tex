@@ -9,21 +9,21 @@
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
 
-Regresja grzbietowa to technika regresji liniowej, która wykorzystuje regularyzację $L_2$ w celu rozwiązania problemów współliniowości i nadmiernego dopasowania. Dodając człon kary do funkcji kosztu, regresja grzbietowa pomaga ustabilizować oszacowania współczynników, szczególnie gdy istnieją wysokie korelacje między predyktorami.
+\hspace{1.5cm} Regresja grzbietowa to technika regresji liniowej, która wykorzystuje regularyzację $L_2$ w celu rozwiązania problemów współliniowości i nadmiernego dopasowania. Dodając człon kary do funkcji kosztu, regresja grzbietowa pomaga ustabilizować oszacowania współczynników, szczególnie gdy istnieją wysokie korelacje między predyktorami.
 
 \phantomsection
 \setstretch{1.5}
+\needspace{4\baselineskip}
 \section*{Wzóry ogólne}
 \vspace{-1.0em}
 \label{sec:what_is_ml}
 
 
-    \textbf{ Jawny wzór regresji grzbietowej}: 
-    \begin{center}
-        
-$\boldsymbol{\hat \beta} = ( \boldsymbol{X}^T \boldsymbol{X} + \lambda \boldsymbol{I} )^{-1} \boldsymbol{X}^T \boldsymbol{y}$
-    \end{center}
-    
+\textbf{ Jawny wzór regresji grzbietowej}: 
+\begin{center}
+    $\boldsymbol{\hat \beta} = ( \boldsymbol{X}^T \boldsymbol{X} + \lambda \boldsymbol{I} )^{-1} \boldsymbol{X}^T \boldsymbol{y}$
+\end{center}
+
 gdzie:
 \begin{itemize}
 \setlength\itemsep{-0.5em}
@@ -35,7 +35,7 @@ gdzie:
 \item  $\boldsymbol{y}$: To wektor odpowiedzi zawierający obserwacje zmiennej zależnej, którą próbujemy przewidzieć.
 
 \end{itemize}
-\clearpage
+% \clearpage
 
     \textbf{Funkcja kosztu dla regresji grzbietowej}: 
     \begin{center}
@@ -58,7 +58,7 @@ gdzie:
 
 \phantomsection
 \setstretch{1.5}
-\section*{Główne cechy regresji grzbietowej}
+\section*{Główne cechy}
 \vspace{-1.0em}
 \label{sec:why_use_ml}
 
@@ -71,7 +71,7 @@ gdzie:
 
 \phantomsection
 \setstretch{1.5}
-\section*{Zalety regresji grzbietowej}
+\section*{Zalety}
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
@@ -84,7 +84,7 @@ gdzie:
 
 \phantomsection
 \setstretch{1.5}
-\section*{Ograniczenia regresji grzbietowej}
+\section*{Ograniczenia}
 \vspace{-1.0em}
 \label{sec:ml_challenges}
 
@@ -97,6 +97,7 @@ gdzie:
 
 \phantomsection
 \setstretch{1.5}
+\needspace{4\baselineskip}
 \section*{Użyte parametry dla GridSearchCV \cite{url_Ridge, url_grid_search}}
 \vspace{-1.0em}
 \label{sec:ml_challenges}
