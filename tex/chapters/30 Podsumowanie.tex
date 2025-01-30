@@ -1,0 +1,19 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\chapter*{VI. Podsumowanie} 
+\addcontentsline{toc}{chapter}{\textnormal{VI. Podsumowanie}}
+\fontsize{12}{14}\selectfont
+% \vspace{\baselineskip} 
+
+\hspace{1.5cm} W przypadku \textbf{modułu objętościowego} i \textbf{poprzecznego} najlepiej działającym modelem był \textbf{ElasticNet}, który osiągnął najwyższe wartości R² (0,911 dla modułu objętościowego, 0,835 dla modułu poprzecznego), prawdopodobnie ze względu na łączny wybór cech równoważących regularyzację L1/L2. Modele liniowe, takie jak \textbf{Lasso} i \textbf{LinearRegression}, były najszybsze (poniżej 0,1 minuty) przy minimalnych różnicach w wydajności między metodami liniowymi (R² > 0,8 dla obu celów). Sugeruje to silne zależności liniowe w danych dla tych właściwości mechanicznych. Jednak modele oparte na drzewach, takie jak \textbf{RandomForest}, wypadły słabo w stosunku do ich kosztu obliczeniowego (98–101 minut), podczas gdy \textbf{TheilSenRegressor} i \textbf{DecisionTree} całkowicie zawiodły (R² < 0,6), co może wskazywać na nieprzydatność do tych zadań.
+
+\hspace{1.5cm} \textbf{Współczynnik anizotropii} okazał się wyzwaniem dla wszystkich modeli, przy czym najwyższy $R^2$ (0,18) osiągnął \textbf{RandomForest}. Ta słaba wydajność (R² < 0,18 we wszystkich modelach) oznacza albo nieliniowe relacje, niewystarczające cechy, albo wrodzony szum w danych.  Co zaskakujące, nawet słaba wydajność \textbf{RandomForest} przewyższyła prognozę bazową, sugerując minimalne, ale nietrywialne przechwycenie sygnału.
+
+\hspace{1.5cm} Wartym uwagi jest \textbf{TheilSenRegressor}, zawiódł całkowicie w większośći przypadków. Prawdopodobnie z powodu niewystarczającego dostrojenia hiperparametrów (np. `max\_subpopulation` nie wydaje się to być wina za niskiego `max\_iter`, ponieważ w konsoli nie były zgłaszane żadne ostrzeżenia od tego modelu),
+
+\hspace{1.5cm} Patrząc się ogólnie na \textbf{Modele liniowe} (LR, Lasso, Ridge, ElasticNet) można zauważyć, że były bardzo dobre w przewidywaniu modułów, ale miały problemy z anizotropią i współczynnikiem Poissona, prawdopodobnie z powodu zbyt uproszczonych założeń dla tych celów. \textbf{HuberRegressor} i \textbf{LinearSVR}, choć odporne na wartości odstające, nie oferowały znaczących zalet w porównaniu z prostszymi modelami liniowymi pomimo wyższych kosztów obliczeniowych. Niepowodzenia  W przypadku \textit{modeli opartych na drzewach}, \textbf{DecisionTree} jest zawiódł pomimo głębokich drzew, co sugeruje słabą trafność cech lub nadmierną regularyzację, podczas gdy \textbf{RandomForest} wykazuje potencjał anizotropii i współczynnika Poissona, ale przy wysokich kosztach obliczeniowych.
+
+\hspace{1.5cm} Zbierając wszystko w całość: modele liniowe dominują w przewidywaniach dla właściwości związanych z modułem, ale są niewystarczające dla anizotropii i współczynnika Poissona. Metody oparte na drzewach, chociaż marginalnie przydatne w przypadku tych trudniejszych celów, są kosztowne obliczeniowo i mogą wymagać większej różnorodności cech lub alternatywnych algorytmów (np. drzew ze wzmocnieniem gradientowym). Uniwersalny współczynnik anizotropii wymaga w szczególności przemyślenia. Żaden model nie wykazał dopasowania do tych danych. Na koniec, zmiana podejścia przy szukaniu optimum. Zamiast sprawdzać ustalone z góry punkty i marnować dużo zasobów na podejście "sztywne", może rozwiązanie z metodami gradientów mogłoby coś zmienić.
