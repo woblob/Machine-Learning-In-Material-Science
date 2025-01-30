@@ -1,0 +1,143 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\needspace{4\baselineskip}
+\section*{3. Generowanie cech - \textit{matminer} \cite{wardagrawalchoudarywolverton2016, demlohayrewolvertonstevanovic2016, ward2018matminer} i \textit{Pipeline} \cite{scikitlearn}} 
+\addcontentsline{toc}{section}{\textnormal{3. Generowanie cech - \textit{matminer} i \textit{Pipeline}}}
+\fontsize{12}{14}\selectfont
+
+
+W procesie dodawania cech, wykorzystane zostały:
+\begin{itemize}
+    \item {\textit{\textbf{StrToComposition}} - zamienia wzory sumaryczne na jawną formę składu chemicznego ("kompozycja"). np. wzór $"DyP_5"$ przemienia w $"Dy1\ P5"$},
+    
+    \item {\textit{\textbf{ElementProperty}} - Na podstawie świeżo dodanej kolumny '\textit{composition}', baza jest rozszerzana o wiele różnych cech związanych ze składem chemicznym, np. Wagi atomowe, temperatury topnienia, średnice atomowe, itp. Na każdą cechę przypada wiele danych statystycznych: minimum, maximum, mediana, średnia, moda, itd.},
+    
+    \item {\textit{\textbf{CompositionToOxidComposition}} - dokłada stopnie utlenienia z wyznaczonej "kompozycji",}
+    
+    \item {\textit{\textbf{OxidationStates}} - przetwarza dane otrzymane stopnie utlenienia na dane statystyczne: minimalny stopień, odchylenie standardowe pomiędzy zmiennymi. }
+    
+    \item {\textit{\textbf{DensityFeatures}} - na koniec, ze struktury krystalicznej wyznaczane są gęstość, gęstość upakowania oraz objętość na atom ("\textit{vpa}") .}
+\end{itemize}
+
+\begin{pythoncode}
+import pandas as pd
+import joblib
+
+from matminer.featurizers.conversions import (
+    StrToComposition,
+    CompositionToOxidComposition,
+)
+from matminer.featurizers.composition import ElementProperty, OxidationStates
+from matminer.featurizers.structure import DensityFeatures
+
+from workFiles.functions.download_data import download_data_from_mp
+
+def get_full_dataframe(docs: pd.DataFrame) -> pd.DataFrame:
+    print("Extracting data...")
+
+    df = StrToComposition().featurize_dataframe(docs, "formula_pretty")
+    df = ElementProperty.from_preset(
+        preset_name="magpie", impute_nan=True
+    ).featurize_dataframe(df, col_id="composition")
+    df = CompositionToOxidComposition().featurize_dataframe(df, "composition")
+    df = OxidationStates().featurize_dataframe(df, "composition_oxid")
+    df = DensityFeatures().featurize_dataframe(df, "structure", ignore_errors=True)
+
+    df.dropna(axis=0, how="any", inplace=True)
+
+    print("Data extracted")
+    print(f"Removed {len(docs) - len(df)} records")
+
+    return df
+\end{pythoncode}
+\hspace{1.5cm} Czasami niektóre rekordy nie spełniają wymagań przy rozszeżaniu ilości cech związanych z gęstością. W tym kroku odpada jeden rekord co daje nam rezultat 3138 rekordów w bazie.\\
+
+
+\hspace{1.5cm} Przed przystąpieniem do dopasowywania modeli, należy wyciągnąć  kolumny które chcemy przewidzieć. Przy okazji pozbywamy się kolumn które albo zostały już wykorzystane albo nie da się ich użytecznie przedstawić w postaci numerycznej.
+
+\begin{pythoncode}
+import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+
+from workFiles.functions.helpers import rmse
+from workFiles.functions.performanceDecorator import performance_decorator
+from workFiles.types import Data_transformed, Data_splitted, Grid_result
+
+predicted_properties = [
+    "bulk_modulus",
+    "shear_modulus",
+    "universal_anisotropy",
+    "homogeneous_poisson",
+]
+
+excluded_columns = predicted_properties + [
+    "formula_pretty",
+    "structure",
+    "composition",
+    "composition_oxid",
+]
+\end{pythoncode} 
+
+\\ \\
+ 
+\hspace{1.5cm} Dane pobrane z \textit{Materials Project} można zmodyfikować w celu znalezienia bardziej złożonych zależności niż tylko podstawowe.
+
+Użyte klasy transformujące:
+\begin{enumerate}
+    \item {\textbf{\textit{PolynomialFeatures}} - sprawia że zmienne są mnożone ze sobą aż do osiągnięcia określonego stopnia wielomianu. np. mająć kolumny [\textbf{a}, \textbf{b}] przed transformacją, po transformacji otrzymamy zestaw [\textbf{1}, \textbf{a}, \textbf{b}, $\textbf{a} \cdot \textbf{b}$, $\textbf{a}^2$, $\textbf{b}^2$]}. Ogólna forma: $\frac{(n+d)!}{n!d!}$ gdzie $n$ to ilość cech, $d$ to stopień określony z \textit{PolynomialFeatures}. W ten sposób dopasowane modele prostoliniowe mogą symulować wielomiany.
+    \item {\textbf{\textit{StandardScaler}} - zmienne zazwyczaj posiadają wielkości w różnych przedziałach. W ułatwienia zadania modelom, od każdej kolumny z bazy, odejmuje się średnią tej kolumny i dzieli przez odchylenie standardowe. W ten sposób dane są wyśrodkowane i przeskalowane.  Ten krok jest wrażliwy na wartości odstające. }
+    \item {\textbf{\textit{PCA}} - \textit{"Principal Component Analysis"} - redukuje ilość kolumn, zachowując większość informacji z danych. Przydatne, kiedy zmienne nie wpływają na wynik albo są mocno skorelowane z innymi zmiennymi.}
+\end{enumerate}
+
+
+\begin{pythoncode}
+def extract_data_to_fit(
+    table: pd.DataFrame, properties_to_predict=None, properties_to_exclude=None
+) -> Data_transformed:
+    if properties_to_predict is None:
+        properties_to_predict = predicted_properties
+
+    if properties_to_exclude is None:
+        properties_to_exclude = excluded_columns
+
+    y_true = table[properties_to_predict]
+    X_original = table.drop(properties_to_exclude, axis=1)
+
+    pipe = Pipeline(
+        [
+            ("polynomialFeatures", PolynomialFeatures(degree=2)),
+            ("standardScaler", StandardScaler()),
+            ("pca", PCA(n_components=0.95)),
+        ]
+    )
+
+    X_transformed = pipe.fit_transform(X_original)
+
+    print(f"df shape: {X_original.shape}")
+    print(f"df transformed shape: {X_transformed.shape}", end="\n\n")
+
+    return Data_transformed(X_transformed, y_true)
+\end{pythoncode}
+
+
+
+\needspace{4\baselineskip}
+\hspace{1.5cm} Podsumowując, przygotowanie bazy danych sprowadza się do wywołania tych dwóch funkcji:
+\begin{pythoncode}
+from workFiles.functions.coordinator import (
+    extract_data_to_fit,
+    predicted_properties,
+)
+from workFiles.functions.getDF import get_df
+
+df = get_df()
+data = extract_data_to_fit(df, predicted_properties)
+\end{pythoncode}
+
+\hspace{1.5cm} Najpierw dostajemy dane z \textit{Materials Project}, a potem przetwarzamy je przez metody dodające cechy z biblioteki \textit{Matminer}. Tak spreparowana baza jest gotowa do wykorzystania w uczeniu maszynowym.

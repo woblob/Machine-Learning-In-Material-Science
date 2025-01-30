@@ -1,0 +1,108 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\chapter*{VI. Funkcje pomocnicze} 
+\addcontentsline{toc}{chapter}{\textnormal{VI. Funkcje pomocnicze}}
+\fontsize{12}{14}\selectfont
+
+\vspace{\baselineskip}
+Oblicza średni błąd kwadratowy między wartościami prawdziwymi i przewidywanymi.
+\begin{pythoncode}
+def rmse(y_true, y_pred):
+    return np.sqrt(mean_squared_error(y_true, y_pred))
+\end{pythoncode}
+
+\vspace{\baselineskip}
+Oblicza całkowity czas pozostały w minutach do ukończenia treningu pozostałych modeli.
+Oblicza się go, sumując średni czas potrzebny każdemu modelowi na ukończenie treningu każdej cechy.
+Następnie tę średnią mnoży się przez liczbę cech, których model jeszcze nie trenował.
+\begin{pythoncode}
+def calculate_total_time_left(Results):
+    first_column = list(Results.keys())[0]
+    total_time_per_model = {model: [] for model in Results[first_column]}
+
+    for feature in Results:
+        for model_name in Results[feature]:
+            time_to_add = Results[feature][model_name]["time_taken"]
+            if time_to_add is None:
+                continue
+            total_time_per_model[model_name].append(time_to_add)
+
+    total_time_left = sum(
+        (
+            np.mean(fit_time) * (len(Results.keys()) - len(fit_time))
+            if len(fit_time) > 0
+            else 0
+        )
+        for fit_time in total_time_per_model.values()
+    )
+    return round(total_time_left, 2)
+\end{pythoncode}
+
+
+\vspace{\baselineskip}
+Liczy liczbę kombinacji podanych hiperparametrów.
+\needspace{4\baselineskip}
+\begin{pythoncode}
+def count_combinations(element: tuple[type, dict]):
+    model, options = element
+    model_name = model.__name__
+    options_combination = np.prod([len(v) for v in options.values()])
+    return model_name, int(options_combination)
+\end{pythoncode}
+
+\vspace{\baselineskip}
+\needspace{4\baselineskip}
+Pomocnicze typy danych.
+
+\begin{pythoncode}
+from collections import namedtuple
+
+Data_transformed = namedtuple("Data", ["X", "y"])
+Data_splitted = namedtuple("Data", ["X_train", "X_test", "y_train", "y_test"])
+Grid_result = namedtuple("Grid_result", ["instance", "r2_test", "rmse_test"])
+\end{pythoncode}
+
+\vspace{\baselineskip}
+Pomocniczy dekorator do wyznaczania jak długo zajęło funkcji na wykonanie zadania. Czas zwraca w minutach.
+\needspace{4\baselineskip}
+\begin{pythoncode}
+import time
+
+def performance_decorator(func):
+    total_time = 0
+
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+
+        result = func(*args, **kwargs)
+
+        time_took_seconds = time.perf_counter() - start_time
+
+        time_took_minutes = round(time_took_seconds / 60, 2)
+
+        nonlocal total_time
+        total_time += time_took_minutes
+        print(f"Total time: {round(total_time, 2)}[min]")
+
+        return result, time_took_minutes
+
+    return wrapper
+\end{pythoncode}
+
+\vspace{\baselineskip}
+Wymagane biblioteki do obsługi skryptu.
+\needspace{4\baselineskip}
+reqs.txt
+\begin{pythoncode}
+emmet==2018.6.7
+joblib==1.4.2
+matminer==0.9.3
+numpy==2.2.2
+pandas==2.2.3
+python-dotenv==1.0.1
+scikit_learn==1.4.2
+mp_api==0.45.1
+\end{pythoncode}

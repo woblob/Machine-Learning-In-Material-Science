@@ -4,7 +4,6 @@
 \fontsize{14}{16}\selectfont
 \setlength{\parindent}{0pt}
 \section*{7. Liniowa regresja wektorów nośnych (Liniowy SVR) \cite{alma991000280759708832}}
-\label{sec:machine_learning_overview}
 \addcontentsline{toc}{section}{7. Liniowa regresja wektorów nośnych (Liniowy SVR)}
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
@@ -15,7 +14,6 @@
 \setstretch{1.5}
 \section*{Marginesy}
 \vspace{-1.0em}
-\label{sec:what_is_ml}
 
 \hspace{1.5cm} W odróżnieniu od regresji zwykłej, która próbuje dopasować model do wszystkich wartości, Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
 
@@ -26,7 +24,6 @@ Twardy margines jest bardziej rygorystyczny i nie pozwala na błędy poza nim. M
 \setstretch{1.5}
 \section*{Zasada działania}
 \vspace{-1.0em}
-\label{sec:what_is_ml}
 
 \hspace{1.5cm} Liniowy SVR wprowadza margines tolerancji (epsilon, $\epsilon$) wokół przewidywanych wartości. Celem jest dopasowanie liniowej funkcji regresji do tego marginesu, ignorując błędy, które się w nim mieszczą.
 
@@ -81,7 +78,6 @@ Gdzie:
 \setstretch{1.5}
 \section*{Zalety }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Ten model jest wydajny obliczeniowo, szczególnie w przypadku dużych zestawów danych, ponieważ unika złożoności związanej z jądrami nieliniowymi.
 Podobnie jak jej nieliniowe odpowiedniki, liniowy SVR jest mniej wrażliwy na wartości odstające ze względu na jego funkcję kosztu niewrażliwą na $\epsilon$.
@@ -91,7 +87,6 @@ Podobnie jak jej nieliniowe odpowiedniki, liniowy SVR jest mniej wrażliwy na wa
 \setstretch{1.5}
 \section*{Ograniczenia }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Liniowa regresja wektorów nośnych zakłada liniową zależność między cechami a zmienną docelową. Jeśli podstawowa zależność jest nieliniowa, ten model może nie działać dobrze w porównaniu z innymi technikami regresji, które mogą wychwytywać nieliniowości.
 
@@ -102,7 +97,6 @@ Wydajność liniowej regresji wektorów nośnych zależy od starannego dostrojen
 \setstretch{1.5}
 \section*{Użyte parametry dla GridSearchCV \cite{url_LinearSVR, url_grid_search}}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \begin{itemize}
 \setlength\itemsep{-0.5em}
@@ -112,4 +106,4 @@ Wydajność liniowej regresji wektorów nośnych zależy od starannego dostrojen
 \item tol: ustawia tolerancję dla kryteriów zatrzymania w procesie optymalizacji.
 \end{itemize}
 % \clearpage
-% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

@@ -4,7 +4,6 @@
 \fontsize{14}{16}\selectfont
 \setlength{\parindent}{0pt}
 \section*{5. Regresor drzewa decyzyjnego \cite{alma991000280759708832}}
-\label{sec:machine_learning_overview}
 \addcontentsline{toc}{section}{5. Regresor drzewa decyzyjnego}
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
@@ -15,7 +14,6 @@
 \setstretch{1.5}
 \section*{Zasada działania}
 \vspace{-1.0em}
-\label{sec:what_is_ml}
 
 \hspace{1.5cm} Model składa się z węzłów i gałęzi. Każdy węzeł wewnętrzny reprezentuje cechę (lub atrybut), każda gałąź reprezentuje regułę decyzyjną, a każdy węzeł liścia reprezentuje przewidywany wynik (wartość zmiennej docelowej). Ogólna budowa przypomina strukturę drzewa.
 
@@ -28,7 +26,6 @@ Proces podziału jest kontynuowany rekurencyjnie, aż do spełnienia kryterium z
 \setstretch{1.5}
 \section*{CART dla regresora drzewa decyzyjnego}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 
 \hspace{1.5cm} CART (Drzewa klasyfikacji i regresji) to algorytm używany do tworzenia drzew decyzyjnych zarówno dla zadań klasyfikacji, jak i regresji. W przypadku regresji, CART konstruuje drzewo, które przewiduje ciągłe wyniki, dzieląc dane na podzbiory na podstawie wartości cech.
@@ -37,7 +34,6 @@ Proces podziału jest kontynuowany rekurencyjnie, aż do spełnienia kryterium z
 \setstretch{1.5}
 \section*{Jak działa CART?}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \begin{itemize}
 
@@ -50,7 +46,6 @@ Proces podziału jest kontynuowany rekurencyjnie, aż do spełnienia kryterium z
 \setstretch{1.5}
 \section*{Funkcja kosztu}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Funkcja kosztu używana w CART do regresji opiera się na minimalizacji średniego błędu kwadratowego (MSE). 
 Podczas każdego podziału CART oblicza MSE dla potencjalnych podziałów i wybiera ten, który minimalizuje ten błąd we wszystkich powstałych węzłach podrzędnych.
@@ -59,7 +54,6 @@ Podczas każdego podziału CART oblicza MSE dla potencjalnych podziałów i wybi
 \setstretch{1.5}
 \section*{Zalety }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Drzewa decyzyjne oraz algorytm CART są łatwe do wizualizacji i interpretacji, co czyni je prostymi do zrozumienia sposobu podejmowania decyzji. Mogą uchwycić złożone relacje między cechami a zmienną docelową bez konieczności przyjmowania założeń liniowych. Drzewa decyzyjne mogą również zapewnić wgląd w znaczenie cech, pomagając zidentyfikować zmienne, które mają największy wpływ na przewidywania.
 Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, co czyni go wszechstronnym narzędziem w różnych zastosowaniach.
@@ -69,7 +63,6 @@ Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, c
 \setstretch{1.5}
 \section*{Ograniczenia }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Drzewa decyzyjne są podatne na nadmierne dopasowanie, szczególnie jeśli pozwoli się im urosnąć zbyt głęboko, co prowadzi do słabej generalizacji niewidzianych danych. Dodatkowo niewielkie zmiany w danych mogą skutkować znacząco różnymi strukturami drzew, co czyni je wrażliwymi na szum w zestawie danych.
 
@@ -77,7 +70,6 @@ Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, c
 \setstretch{1.5}
 \section*{Techniki regularyzacji \cite{url_DecisionTreeRegressor}}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Aby złagodzić nadmierne dopasowanie i poprawić stabilność modeli drzew decyzyjnych, można dostrajać hiperparametry takie jak maksymalna głębokość, minimalna liczba próbek wymaganych do podziału węzła wewnętrznego oraz minimalna liczba próbek w węźle liścia.
 
@@ -87,7 +79,6 @@ Dodatkowo, CART może obsługiwać zarówno dane liczbowe, jak i kategoryczne, c
 \setstretch{1.5}
 \section*{Zastosowania}
 \vspace{-0.5em}
-\label{sec:ml_challenges}
 
 Regresory drzewa decyzyjnego oraz algorytm CART są szeroko stosowane w dziedzinach, gdzie łatwość interpretacji i obsługa nieliniowych relacji są niezbędne.
 
@@ -95,7 +86,6 @@ Regresory drzewa decyzyjnego oraz algorytm CART są szeroko stosowane w dziedzin
 \setstretch{1.5}
 \section*{Użyte parametry dla GridSearchCV \cite{url_DecisionTreeRegressor, url_grid_search}}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \begin{itemize}
 \setlength\itemsep{-0.5em}

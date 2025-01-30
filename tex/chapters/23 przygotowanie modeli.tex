@@ -1,0 +1,123 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\needspace{5\baselineskip}
+\section*{4. Przygotowanie modeli} 
+\addcontentsline{toc}{section}{\textnormal{4. Przygotowanie modeli}}
+\fontsize{12}{14}\selectfont
+
+\hspace{1.5cm} W tej sekcji określane są modele jakie przetestowano. Każdy model jest sparowane z konfiguracjami do klasy \textit{GridSearchCV}.
+
+
+
+\begin{pythoncode}
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import (
+    LinearRegression,
+    Lasso,
+    Ridge,
+    HuberRegressor,
+    TheilSenRegressor,
+    ElasticNet,
+)
+from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVR, SVR
+from sklearn.tree import DecisionTreeRegressor
+import joblib
+from workFiles.types import Data_splitted
+from workFiles.functions.coordinator import fit_model
+from workFiles.functions.helpers import calculate_total_time_left
+\end{pythoncode}
+
+
+
+
+\hspace{1.5cm} Większość modeli wymienionych w tej pracy, są regresorami liniowymi. Wyjątkami są \textit{DecisionTreeRegressor} oraz \textit{RandomForestRegressor}.
+
+\begin{pythoncode}
+models = [
+    (LinearRegression, {
+        "fit_intercept": [True, False],
+        "positive": [True, False]
+    }),
+    (Lasso, {
+        'alpha': [0.001, 0.01, 0.1, 1.0, 10],
+        'tol': [0.0001, 0.001, 0.01, 0.1],
+        'copy_X': [True]
+    }),
+    (Ridge, {
+        'alpha': [0.001, 0.01, 0.1, 1.0, 10.0, 100],
+        'solver': ['svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag', 'saga'],
+        'copy_X': [True],
+        'max_iter': [100_000],
+        'fit_intercept': [True],
+    }),
+    (ElasticNet, {
+        'alpha': [0.001, 0.01, 0.1, 1.0, 10],
+        'tol': [0.00001, 0.0001, 0.001, 0.01, 0.1],
+        'l1_ratio': [0.1, 0.2, 0.4, 0.6, 0.8, 0.9],
+        "fit_intercept": [True],
+        'copy_X': [True],
+        "selection": ['cyclic', 'random']
+    }),
+    (HuberRegressor, {
+        'max_iter': [10_000],
+        'epsilon': [1.0, 1.5, 2.0, 2.5, 3.0],
+        'alpha': [0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0],
+        'fit_intercept': [True],
+    }),
+    (LinearSVR, {
+        'max_iter': [100_000],
+        'loss': ['epsilon_insensitive', 'squared_epsilon_insensitive'],
+        'epsilon': [0.0, 0.1, 0.3, 0.6, 1.0, 3.0, 10.0],
+        'tol': [1e-04, 1e-03, 1e-02, 1e-01, 1e+00],
+    }),
+    (TheilSenRegressor, {
+        'max_iter': [100],
+        'max_subpopulation': [500, 700, 900, 1100],
+        'fit_intercept': [True],
+        'tol': [1e-05, 1e-04, 1e-03, 1e-02],
+    }),
+    (DecisionTreeRegressor, {
+        'max_depth': [3, 7, 10, 30, 60, 100, 150, 200],
+        'min_samples_split': [2, 4, 8, 16, 32],
+        'min_samples_leaf': [1, 2, 4, 8],
+        'splitter': ['best', 'random'],
+    }),
+\hspace{1.5cm}     (RandomForestRegressor, {
+        'n_estimators': [50, 75, 100, 150, 200],
+        'max_leaf_nodes': [32, 64, 128, 256],
+        'max_depth': [3, 9, 27, 81],
+        'bootstrap': [True],
+    }),
+]
+\end{pythoncode}
+
+
+\hspace{1.5cm} Modele będą przechowane w obiekcie \textit{Results} aż do skończenia się pracy skryptu. 
+Na każdą wyznaczaną cechę, przypada pełny zestaw modeli.
+\begin{pythoncode}
+try:
+    Results = joblib.load("Results.joblib")
+    print("Loaded Results.joblib")
+except FileNotFoundError as e:
+    print(e)
+
+    Results = {
+        column_name: {
+            model.__name__: {
+                "instance": None,
+                "time_taken": None,
+                "time_taken_per_run": None,
+                "r2": None,
+                "rmse": None,
+            }
+            for (model, _) in models
+        }
+        for column_name in data.y
+    }
+\end{pythoncode}
+
+

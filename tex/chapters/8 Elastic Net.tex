@@ -6,7 +6,6 @@
 
 \needspace{4\baselineskip}
 \section*{4. Regresja Elastic Net \cite{alma991000280759708832}}
-\label{sec:machine_learning_overview}
 \addcontentsline{toc}{section}{4. Regresja Elastic Net}
 \fontsize{12}{14}\selectfont
 \vspace{-1.0em}
@@ -17,7 +16,6 @@
 \setstretch{1.5}
 \section*{Wzór ogólny}
 \vspace{-1.0em}
-\label{sec:what_is_ml}
 
 
 Funkcję kosztu dla Elastic Net można wyrazić jako:
@@ -47,7 +45,6 @@ gdzie:
 \setstretch{1.5}
 \section*{Główne cechy}
 \vspace{-1.0em}
-\label{sec:why_use_ml}
 
 \hspace{1.5cm} Regresja Elastic Net łączy w sobie elementy regularyzacji $L_1$ i $L_2$, co pozwala na jednoczesny wybór zmiennych oraz uwzględnienie współliniowości między predyktorami. To podwójne podejście jest szczególnie korzystne w sytuacjach, gdy cechy są silnie skorelowane, co może stanowić problem dla samego modelu Lasso. Składnik $L_1$ promuje rzadkość w modelu, ustawiając niektóre współczynniki na zero, podczas gdy składnik $L_2$ zapewnia stabilność, zmniejszając wartości współczynników skorelowanych predyktorów.
 
@@ -56,7 +53,6 @@ gdzie:
 \setstretch{1.5}
 \section*{Zalety }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 
 \hspace{1.5cm} Jedną z głównych zalet modelu Elastic Net jest jego elastyczność.
@@ -67,7 +63,6 @@ Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadk
 \setstretch{1.5}
 \section*{Ograniczenia }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Elastic Net ma dwa parametry regularyzacji, co utrudnia dostrajanie modelu. Wymaga starannego dostrajania hiperparametrów, aby uzyskać optymalną wydajność, ale może prowadzić do modeli trudniejszych w interpretacji.
 
@@ -76,7 +71,6 @@ Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadk
 \setstretch{1.5}
 \section*{Zastosowania }
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \hspace{1.5cm} Elastic Net znajduje szerokie zastosowanie w dziedzinach, gdzie wybór cech i współliniowość są kluczowe. Łącząca zalety regresji Lasso i Ridge, oferująca solidne rozwiązanie do modelowania liniowego w złożonych zbiorach danych z skorelowanymi cechami.
 
@@ -85,7 +79,6 @@ Elastic Net skutecznie radzi sobie z wieloma predyktorami, zwłaszcza w przypadk
 \setstretch{1.5}
 \section*{Użyte parametry dla GridSearchCV \cite{url_ElasticNet, url_grid_search}}
 \vspace{-1.0em}
-\label{sec:ml_challenges}
 
 \begin{itemize}
 \setlength\itemsep{-0.5em}

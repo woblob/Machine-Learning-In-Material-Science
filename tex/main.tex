@@ -7,7 +7,7 @@
 \usepackage{amsmath,amsthm,amssymb,amsfonts}
 \usepackage{comment}
 \usepackage{multirow}
-\usepackage{rotating, graphicx}
+\usepackage{rotating, graphicx, subfigure}
 \usepackage{tabularx}
 \usepackage{ragged2e}
 \usepackage{textcomp}
@@ -29,6 +29,37 @@ outer=2cm,
 top=2.5cm,     
 bottom=2.5cm    
 ]{geometry}
+\usepackage{minted}
+\usepackage{subcaption}
+
+
+
+
+\usepackage[export]{adjustbox}
+
+% ttable setup
+\usepackage{array}
+\usepackage[table]{xcolor}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+\newcolumntype{s}{>{\columncolor[HTML]{AAACED}} p{3cm}}
+
+\usepackage{booktabs}
+
+
+
+% python code snippets
+\definecolor{LightGray}{gray}{0.9}
+\newminted{python}{
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\fontsize{8}{10},
+linenos
+}
+
 
 
 \DeclareLanguageMapping{english}{english-apa}
@@ -141,7 +172,6 @@ bottom=2.5cm
 \input{Front Matter Pages/declaration}
 
 \input{chapters/1 cel} 
-% \input{chapters/2 wstep} 
 \input{chapters/3 Przeglad}
 \input{chapters/4 ML Rodzaje}
 \input{chapters/5 Regresja liniowa}
@@ -157,7 +187,17 @@ bottom=2.5cm
 \input{chapters/15 bulk}
 \input{chapters/16 shear}
 \input{chapters/17 poisson}
-% \input{chapters/18 Część praktyczna}
+\input{chapters/18 Czesc praktyczna}
+\input{chapters/19 opis programu}
+\input{chapters/20 pobranie danych}
+\input{chapters/22 matminer}
+\input{chapters/23 przygotowanie modeli}
+\input{chapters/24 dopasowanie modeli}
+\input{chapters/25 wykresy}
+\input{chapters/28 porownania}
+
+% \input{tables/results}
+\input{chapters/26 pomoc}
 
 \input{End Matter Pages/references} 
 

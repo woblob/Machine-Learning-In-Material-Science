@@ -1,0 +1,93 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\section*{5. Dopasowanie Modelu} 
+\addcontentsline{toc}{section}{\textnormal{5. Dopasowanie Modelu}}
+\fontsize{12}{14}\selectfont
+
+\hspace{1.5cm} Mając gotowe dane można w końcu znaleźć zależności pomiędzy zmiennymi. 
+Najpierw tworzony jest pomocniczy obiekt zliczający ile jest kombinacji.
+\begin{pythoncode}
+model_combinations = {
+    model_name: count for model_name, count in map(count_combinations, models)
+}
+\end{pythoncode}
+
+\hspace{1.5cm} Na wstępie dane są dzielone na treningowe oraz testowe, aby uniknąć przetrenowania.
+Najważniejszą czynnością w tym fragmencie jest wywołanie funkcji '\textit{fit\_model}'. 
+Ona odpowiada za szkolenie modeli. 
+Jeżeli proces był wcześniej przerwany, jest możliwość kontynuacji od ostatniego niezapisanego modelu. Po każdym wyuczeniu modelu, stan się zapisuje. 
+
+\begin{pythoncode}
+for i, column_name in enumerate(data.y):
+    X_train, X_test, y_train, y_test = train_test_split(
+        data.X, data.y[column_name], test_size=0.1, random_state=1234
+    )
+    data_split = Data_splitted(X_train, X_test, y_train, y_test)
+
+    print(f"Property {i}: {column_name}")
+    for j, (model, options) in enumerate(models):
+        if Results[column_name][model.__name__]["instance"] is not None:
+            continue
+        print(i, j)
+
+        model_instance, time_taken = fit_model(model, data_split, options)
+
+        Results[column_name][model.__name__]["instance"] = model_instance.instance
+        Results[column_name][model.__name__]["r2"] = model_instance.r2_test
+        Results[column_name][model.__name__]["rmse"] = model_instance.rmse_test
+
+        time_taken_per_run = time_taken / model_combinations[model.__name__]
+        Results[column_name][model.__name__]["time_taken_per_run"] = time_taken_per_run
+        Results[column_name][model.__name__]["time_taken"] = time_taken
+
+        print(f"Time taken: {time_taken:.2f}[min]")
+        print(f"Time per run: {time_taken_per_run:.2f}[min]", end="\n\n")
+        print(f"Estimated Time Left: {calculate_total_time_left(Results):.2f}[min]")
+
+        joblib.dump(Results, "Results.joblib")
+\end{pythoncode}
+
+\hspace{1.5cm} Na początku definiowany jest sposób jak będzie wykonywać się uczenie modelu. 
+Przesłane hiperparametry '$param\_grid$' określają jak będzie zachowywać model przy uczeniu.
+Parametr $cv  - \textit{Cross Validation}$, określa strategię dzielenia przyjętych danych.
+Wartość ustawiona na 10, daje nam większą pewność na dobre wyniki.
+Parametr $n\_jobs$ określa, ile naraz osobnych procesów może się wykonywać.
+
+\hspace{1.5cm} Po skonfigurowaniu strategii szukania optymalnego rozwiązania, można przekazać model do uczenia.
+
+\hspace{1.5cm} Po wyuczeniu, obliczana jest skuteczność modelu względem danych testowych, Są to dane których wcześniej nie widział. 
+
+Na koniec wynik jest zwracany i zapisuje się w zbiorczym obiekcie \textit{Results}.
+
+\begin{pythoncode}
+@performance_decorator
+def fit_model(Model: type, data: Data_splitted, param_grid: dict) -> Grid_result:
+    X_train, X_test, y_train, y_test = data
+
+    model = Model()
+
+    grid_search = GridSearchCV(
+        model,
+        param_grid,
+        n_jobs=-1,
+        cv=10,
+        scoring="neg_mean_squared_error",
+        return_train_score=True,
+    )
+
+    grid_search.fit(X_train, y_train)
+
+    r2_test = round(grid_search.best_estimator_.score(X_test, y_test), 3)
+    rmse_test = round(rmse(y_test, grid_search.best_estimator_.predict(X_test)), 3)
+
+    print(f"Model: {model.__class__.__name__}")
+    print(f"test R2 = {r2_test:.3f},", end="\t")
+    print(f"RMSE = {rmse_test:.3f}")
+    print("Best Parameters:", grid_search.best_params_)
+    print(f"Best Score: {grid_search.best_score_:.3f}")
+
+    return Grid_result(grid_search, r2_test, rmse_test)
+\end{pythoncode}

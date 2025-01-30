@@ -35,7 +35,7 @@ def _mp_data_anisotropy_cleaning(value: float | None) -> float | None:
     return value
 
 
-def download_data_from_mp(filename: str = None):
+def download_data_from_mp(filename: str = None) -> pd.DataFrame:
     if filename is not None:
         try:
             df = joblib.load(filename)

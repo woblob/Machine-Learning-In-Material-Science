@@ -69,7 +69,7 @@ def extract_data_to_fit(
 
 
 @performance_decorator
-def fit_model(Model: type, data: Data_splitted, param_grid) -> Grid_result:
+def fit_model(Model: type, data: Data_splitted, param_grid: dict) -> Grid_result:
     """
     Perform hyperparameter optimization using GridSearchCV for a given model.
 

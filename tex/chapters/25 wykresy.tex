@@ -1,0 +1,38 @@
+\phantomsection
+\setstretch{1.5}
+\justify
+\fontsize{14}{16}\selectfont
+\setlength{\parindent}{0pt}
+\needspace{10\baselineskip}
+\section*{6. Stworzenie wykresów} 
+\addcontentsline{toc}{section}{\textnormal{6. Stworzenie wykresów}}
+\fontsize{12}{14}\selectfont
+
+\hspace{1.5cm} Ostatnim krokiem jest stworzenie wykresów. 
+Dla każdego modelu względem cechy został stworzony wykres i umieszczony w następnym rozdziale.
+
+\begin{pythoncode}
+for feature in Results:
+    for model_name in Results[feature]:
+        instance = Results[feature][model_name]['instance']
+
+        property_name = f'{featureMap[feature]} {unitsMap[feature]}'
+
+        pf = PlotlyFig(x_title=f'Wartość rzeczywista:\n{property_name}',
+                       y_title=f'Wartość przewidziana:\n{property_name}',
+                       title=model_name,
+                       filename=f"figures/{feature}-{model_name}.html",
+                       fontsize=20)
+
+        y = data.y[feature]
+        X = data.X
+
+        y_pred = instance.best_estimator_.predict(X)
+
+        pf.xy(xy_pairs=[(y, y_pred), bounds[feature]],
+              labels=df['formula_pretty'],
+              modes=['markers', 'lines'],
+              lines=[{}, {'color': 'black', 'dash': 'dash'}],
+              showlegends=False
+              )
+\end{pythoncode}
